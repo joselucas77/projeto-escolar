@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/navbar";
+import { AppProvider } from "../utils/context";
+import { Providers } from "./providers";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],
@@ -20,10 +22,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br">
+    <html lang="pt-br" suppressHydrationWarning>
       <body className={poppins.className}>
-        <Navbar />
-        {children}
+        <Providers>
+          <AppProvider>
+            <Navbar />
+            {children}
+          </AppProvider>
+        </Providers>
       </body>
     </html>
   );

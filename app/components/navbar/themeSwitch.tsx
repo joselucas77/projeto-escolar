@@ -3,8 +3,8 @@ import { useTheme } from "next-themes";
 
 function ThemeSwitch() {
   const { theme, setTheme } = useTheme();
-  // const audioClickRef = useRef(new Audio(clickSound));
-  // const audioUncheckRef = useRef(new Audio(uncheckSound));
+  const audioClickRef = useRef(new Audio("/click1.wav"));
+  const audioUncheckRef = useRef(new Audio("/click2.wav"));
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
@@ -13,11 +13,11 @@ function ThemeSwitch() {
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
 
-    // if (theme === "dark") {
-    //   audioClickRef.current.play();
-    // } else {
-    //   audioUncheckRef.current.play();
-    // }
+    if (theme === "dark") {
+      audioClickRef.current.play();
+    } else {
+      audioUncheckRef.current.play();
+    }
   };
   return (
     <>

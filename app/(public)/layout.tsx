@@ -24,12 +24,12 @@ export default function RootLayout({
   return (
     <html lang="pt-br" suppressHydrationWarning>
       <body className={poppins.className}>
-        <Providers>
-          <AppProvider>
+        <AppProvider>
+          <Providers>
             <Navbar />
             {children}
-          </AppProvider>
-        </Providers>
+          </Providers>
+        </AppProvider>
       </body>
     </html>
   );

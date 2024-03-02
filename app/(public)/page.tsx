@@ -5,11 +5,15 @@ export default function Home() {
   const { navbarActive } = useAppContext();
   return (
     <div
-      className={`absolute w-[calc(100%-250px)] left-60 duration-[500ms] bg-zinc-50 dark:bg-black ${
-        navbarActive ? "w-[calc(100%-80px)] left-20" : ""
+      className={`absolute h-screen px-3 py-3 bg-white dark:bg-gray-900 duration-500 ${
+        navbarActive
+          ? "w-[calc(100%-80px)] left-20"
+          : "w-[calc(100%-240px)] left-60"
       }`}
     >
-      <div className="relative w-full p-5 grid grid-cols-2 gap-x-3">Home</div>
+      <div className="bg-gray-50 relative w-full h-full rounded-lg p-5 grid grid-cols-2 gap-x-3 text-gray-900 dark:text-white dark:bg-gray-800">
+        Home
+      </div>
     </div>
   );
 }

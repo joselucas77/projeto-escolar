@@ -49,7 +49,7 @@ function Navbar() {
   return (
     <nav
       className={`absolute h-screen pl-2 text-gray-900 bg-blue-500 overflow-hidden  duration-500 dark:text-white dark:bg-blue-900 ${
-        navbarActive ? "w-20" : "w-60"
+        navbarActive ? "w-60" : "w-20"
       }`}
     >
       <ul className="relative h-screen">
@@ -60,7 +60,7 @@ function Navbar() {
                 className="relative flex items-center justify-center min-w-16 h-16 duration-500 text-[2em]"
                 onClick={toggleNavbar}
               >
-                {navbarActive ? <IoMenuOutline /> : <IoCloseOutline />}
+                {navbarActive ? <IoCloseOutline /> : <IoMenuOutline />}
               </div>
               <div className="relative flex h-16 text-[1.2em] font-medium items-center pl-2 uppercase tracking-wider	duration-500">
                 SIE
@@ -120,7 +120,7 @@ function Navbar() {
           </li>
           <li
             className={`relative flex justify-start items-center transition-all duration-500 ${
-              navbarActive ? "left-0" : "left-4"
+              navbarActive ? "left-4" : "left-0"
             }`}
           >
             <ThemeSwitch />

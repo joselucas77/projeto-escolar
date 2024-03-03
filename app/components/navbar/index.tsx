@@ -51,7 +51,7 @@ function Navbar() {
   const { navbarActive, toggleNavbar } = useAppContext();
   return (
     <nav
-      className={`absolute h-screen pl-2 text-gray-900 bg-blue-500 overflow-hidden  duration-500 dark:text-white dark:bg-blue-900 ${
+      className={`absolute h-screen px-2 text-gray-900 bg-blue-500 overflow-hidden  duration-500 dark:text-white dark:bg-blue-900 ${
         navbarActive ? "w-60" : "w-20"
       }`}
     >
@@ -65,7 +65,7 @@ function Navbar() {
           <LinksNav />
         </main>
         <footer className="absolute w-full bottom-4">
-          <li className="relative">
+          <li className="relative hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg mb-1">
             <SignOutLink />
           </li>
           <li

@@ -74,7 +74,7 @@ function Navbar() {
               key={index}
               className={`relative ${
                 pathName === link.path
-                  ? "bg-white rounded-l-[50px] duration-500 transition-colors before:absolute before:w-5 before:h-5 before:right-0 before:-top-5 before:rounded-br-3xl before:shadow-[5px_5px_0_5px] before:shadow-white	before:bg-transparent before:duration-500  after:absolute after:w-5 after:h-5 after:right-0 after:-bottom-5 after:rounded-tr-3xl after:shadow-[5px_-5px_0_5px] after:duration-500 after:shadow-white after:bg-transparent dark:before:duration-500 dark:after:duration-500   dark:bg-gray-900 dark:after:shadow-gray-900 dark:before:shadow-gray-900"
+                  ? "bg-white rounded-l-[50px] duration-500 before:absolute before:w-5 before:h-5 before:right-0 before:-top-5 before:rounded-br-3xl before:shadow-[5px_5px_0_5px] before:shadow-white before:transition-shadow	before:bg-transparent before:delay-0 after:absolute after:w-5 after:h-5 after:right-0 after:-bottom-5 after:rounded-tr-3xl after:shadow-[5px_-5px_0_5px] after:delay-0 after:shadow-white after:transition-shadow after:bg-transparent  dark:bg-gray-900 dark:after:shadow-gray-900 dark:before:shadow-gray-900"
                   : ""
               }`}
             >

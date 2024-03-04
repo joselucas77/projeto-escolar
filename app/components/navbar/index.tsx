@@ -65,7 +65,7 @@ function Navbar() {
           <LinksNav />
         </main>
         <footer className="absolute w-full bottom-4">
-          <li className="relative hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg mb-1">
+          <li className="relative hover:bg-gradient-to-bl hover:from-gray-100 hover:to-gray-200 dark:hover:bg-gradient-to-bl dark:hover:from-gray-900 dark:hover:to-gray-800 rounded-full mb-1">
             <SignOutLink />
           </li>
           <li

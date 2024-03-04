@@ -11,7 +11,7 @@ export default function Home() {
           : "w-[calc(100%-80px)] left-20"
       }`}
     >
-      <div className="bg-gray-50 relative w-full h-full rounded-lg p-5 grid grid-cols-2 gap-x-3 text-gray-900 dark:text-white dark:bg-gray-800">
+      <div className="bg-gray-100 relative w-full h-full rounded-lg p-5 grid grid-cols-2 gap-x-3 text-gray-900 dark:text-white dark:bg-gray-800">
         Home
       </div>
     </div>

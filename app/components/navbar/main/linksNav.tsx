@@ -44,9 +44,9 @@ function LinksNav() {
       {navItems.map((link, index) => (
         <li
           key={index}
-          className={`relative hover:bg-gradient-to-bl hover:from-gray-100 hover:to-gray-200 dark:hover:bg-gradient-to-bl dark:hover:from-gray-900 dark:hover:to-gray-800 rounded-full mb-1 ${
+          className={`relative duration-500 hover:bg-gradient-to-bl hover:from-gray-100 hover:to-gray-200 dark:hover:bg-gradient-to-bl dark:hover:from-gray-900 dark:hover:to-gray-800 rounded-full mb-1 ${
             pathName === link.path
-              ? "bg-gradient-to-br from-gray-100 to-gray-200 duration-500 dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-800"
+              ? "bg-gradient-to-br from-gray-100 to-gray-200 dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-800"
               : ""
           }`}
         >

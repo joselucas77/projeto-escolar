@@ -69,7 +69,7 @@ function Navbar() {
             <SignOutLink />
           </li>
           <li
-            className={`relative flex justify-start items-center transition-all duration-500 ${
+            className={`relative flex justify-start items-center transition-all duration-500 whitespace-nowrap ${
               navbarActive ? "left-4" : "left-0"
             }`}
           >

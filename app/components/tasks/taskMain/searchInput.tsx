@@ -7,7 +7,7 @@ interface Search {
 
 function SearchInput({ search, setSearch }: Search) {
   return (
-    <div className="relative w-64 -top-8 left-[calc(100%-34%)]">
+    <div className="relative w-64 -top-8 left-[calc(100%-48%)]">
       <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
         <svg
           className="w-4 h-4 text-gray-500 dark:text-gray-400"

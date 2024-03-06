@@ -33,7 +33,7 @@ const Pagination: React.FC<PaginationProps> = ({
   };
 
   return (
-    <div className="relative flex w-20 -top-8 left-[calc(100%-32%)]">
+    <div className="relative flex w-20 -top-8 left-[calc(100%-47%)]">
       <IoArrowBackCircleOutline
         onClick={() => handlePageClick(currentPage - 1)}
         className={`text-4xl ${

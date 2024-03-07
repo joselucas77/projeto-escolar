@@ -7,28 +7,28 @@ export interface ITEMS {
 export const Context: ITEMS[] = [
   {
     title: "Atividade 1",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    text: "Lorem ipsum dolor sit amet consectetur elit.",
     date: "20/03/2024",
   },
   {
     title: "Atividade 2",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    date: "20/03/2024",
+    text: "Lorem ipsum sit amet consectetur adipisicing elit.",
+    date: "20/01/2024",
   },
   {
     title: "Atividade 3",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    date: "20/03/2024",
+    text: "Lorem ipsum dolor amet consectetur adipisicing elit.",
+    date: "20/08/2024",
   },
   {
     title: "Atividade 4",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    date: "20/03/2024",
+    text: "ipsum dolor sit amet consectetur adipisicing elit.",
+    date: "20/20/2024",
   },
   {
     title: "Atividade 5",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    date: "20/03/2024",
+    text: "Lorem ipsum dolor sit consectetur adipisicing elit.",
+    date: "20/04/2024",
   },
   {
     title: "Atividade 6",

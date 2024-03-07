@@ -7,7 +7,8 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
-import { Context, ITEMS } from "./data";
+import { Context, ITEMS } from "./taskData";
+import { Persons, Person } from "./studantsData";
 
 interface AppContextType {
   navbarActive: boolean;
@@ -16,7 +17,9 @@ interface AppContextType {
   itemsPerPage: number;
   search: string;
   items: ITEMS[];
+  persons: Person[];
   currentItems: ITEMS[];
+  currentPersons: Person[];
   handlePageChange: (pageNumber: number) => void;
   setSearch: Dispatch<SetStateAction<string>>;
   toggleNavbar: () => void;
@@ -36,13 +39,26 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
 
   const itemsPerPage = 8;
 
-  const items = Context.filter((item) =>
-    item.title.toLowerCase().includes(search.toLowerCase())
+  const items = Context.filter(
+    (item) =>
+      item.title.toLowerCase().includes(search.toLowerCase()) ||
+      item.text.toLowerCase().includes(search.toLowerCase()) ||
+      item.date.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const persons = Persons.filter(
+    (person) =>
+      person.name.toLowerCase().includes(search.toLowerCase()) ||
+      person.surname.toLowerCase().includes(search.toLowerCase()) ||
+      person.age.toLowerCase().includes(search.toLowerCase()) ||
+      person.sex.toLowerCase().includes(search.toLowerCase()) ||
+      person.status.toLowerCase().includes(search.toLowerCase())
   );
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
+  const currentPersons = persons.slice(indexOfFirstItem, indexOfLastItem);
 
   const toggleNavbar = () => {
     setNavbarActive(!navbarActive);
@@ -75,6 +91,8 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         currentItems,
         search,
         setSearch,
+        persons,
+        currentPersons,
       }}
     >
       {children}

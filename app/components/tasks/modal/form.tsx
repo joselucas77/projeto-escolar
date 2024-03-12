@@ -12,7 +12,7 @@ function FormModal() {
           <input
             type="text"
             id="title"
-            className="w-full p-4 text-sm resize-none bg-gray-50 text-gray-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="w-full p-4 text-sm resize-none bg-gray-50 text-gray-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Atividade de Matemática"
           />
         </div>
@@ -23,7 +23,7 @@ function FormModal() {
           <textarea
             name="description"
             id="description"
-            className="w-full p-4 text-sm resize-none bg-gray-50 text-gray-700 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="w-full p-4 text-sm resize-none bg-gray-50 text-gray-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             rows={4}
             placeholder="resolver os exercícios da página 34 do livro I"
           ></textarea>
@@ -36,7 +36,7 @@ function FormModal() {
             type="date"
             name="date"
             id="date"
-            className="w-full p-4 text-sm resize-none bg-gray-50 text-gray-700 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 cursor-text dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="w-full p-4 text-sm resize-none bg-gray-50 text-gray-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 cursor-text dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
         <button
@@ -50,9 +50,9 @@ function FormModal() {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             ></path>
           </svg>
           Adicionar Tarefa

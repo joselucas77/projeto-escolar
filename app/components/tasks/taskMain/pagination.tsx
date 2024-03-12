@@ -36,18 +36,18 @@ const Pagination: React.FC<PaginationProps> = ({
     <div className="relative flex w-20 -top-8 left-[calc(100%-47%)]">
       <IoArrowBackCircleOutline
         onClick={() => handlePageClick(currentPage - 1)}
-        className={`text-4xl ${
+        className={`text-4xl rounded-full shadow-gray-300 shadow dark:shadow dark:shadow-gray-900 ${
           canGoBack
-            ? "text-white dark:text-gray-950 cursor-pointer"
-            : "text-gray-400 dark:text-gray-900 cursor-default"
+            ? "text-gray-400 dark:text-gray-950 cursor-pointer"
+            : "text-gray-300 dark:text-gray-900 cursor-default"
         }`}
       />
       <IoArrowForwardCircleOutline
         onClick={() => handlePageClick(currentPage + 1)}
-        className={`text-4xl ${
+        className={`text-4xl rounded-full shadow-gray-300 shadow dark:shadow dark:shadow-gray-900 ${
           canGoForward
-            ? "text-white dark:text-gray-950 cursor-pointer "
-            : "text-gray-400 dark:text-gray-900 cursor-default"
+            ? "text-gray-400 dark:text-gray-950 cursor-pointer "
+            : "text-gray-300 dark:text-gray-900 cursor-default"
         }`}
       />
     </div>

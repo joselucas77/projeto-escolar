@@ -13,6 +13,7 @@ import { Persons, Person } from "./studantsData";
 interface AppContextType {
   navbarActive: boolean;
   modal: boolean;
+  toast: boolean;
   currentPage: number;
   itemsPerPage: number;
   search: string;
@@ -25,6 +26,8 @@ interface AppContextType {
   toggleNavbar: () => void;
   openModal: () => void;
   closeModal: () => void;
+  openToast: () => void;
+  closeToast: () => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -34,6 +37,7 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
 }) => {
   const [navbarActive, setNavbarActive] = useState(false);
   const [modal, setModal] = useState(false);
+  const [toast, setToast] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
 
@@ -76,6 +80,14 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
     setCurrentPage(pageNumber);
   };
 
+  const openToast = () => {
+    setToast(true);
+  };
+
+  const closeToast = () => {
+    setToast(false);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -93,6 +105,9 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         setSearch,
         persons,
         currentPersons,
+        toast,
+        openToast,
+        closeToast,
       }}
     >
       {children}

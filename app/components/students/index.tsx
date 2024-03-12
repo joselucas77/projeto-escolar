@@ -14,7 +14,7 @@ function StudentsIndex() {
     setSearch,
   } = useAppContext();
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div className="relative">
       <SearchInput search={search} setSearch={setSearch} />
       <Table />
       <Pagination

@@ -1,4 +1,4 @@
-import { Status } from "@/app/utils/studantsData";
+import { Status } from "@/app/api/datas/studantsData";
 import React from "react";
 
 interface StatusProps {

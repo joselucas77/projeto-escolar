@@ -1,5 +1,5 @@
 import React from "react";
-import { useAppContext } from "../../../utils/context";
+import { useAppContext } from "../../../api/utils/context";
 
 interface Props {
   content: React.ReactNode;

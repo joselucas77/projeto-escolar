@@ -12,7 +12,7 @@ import {
 } from "react-icons/io5";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useAppContext } from "../../utils/context";
+import { useAppContext } from "../../api/utils/context";
 import ThemeSwitch from "./footer/themeSwitch";
 import LinksNav from "./main/linksNav";
 import SignOutLink from "./footer/signOutLink";

@@ -1,7 +1,7 @@
 import React from "react";
 import SearchInput from "./taskMain/searchInput";
 import Tasks from "./tasksItems/tasks";
-import { useAppContext } from "../../utils/context";
+import { useAppContext } from "../../api/utils/context";
 import Pagination from "./taskMain/pagination";
 import Modal from "./modal/modal";
 import Form from "./modal/form";

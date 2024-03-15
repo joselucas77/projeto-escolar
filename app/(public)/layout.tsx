@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/navbar";
-import { AppProvider } from "../utils/context";
+import { AppProvider } from "../api/utils/context";
 import { Providers } from "./providers";
 
 const poppins = Poppins({

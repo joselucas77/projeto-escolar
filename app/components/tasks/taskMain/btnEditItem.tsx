@@ -1,6 +1,6 @@
 import React from "react";
 import { IoCreate } from "react-icons/io5";
-import { useAppContext } from "../../../utils/context";
+import { useAppContext } from "../../../api/utils/context";
 
 function BtnEditItem() {
   const { openModal } = useAppContext();

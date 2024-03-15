@@ -7,8 +7,8 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
-import { Context, ITEMS } from "./taskData";
-import { Persons, Person } from "./studantsData";
+import { Context, ITEMS } from "../datas/taskData";
+import { Persons, Person } from "../datas/studantsData";
 
 interface AppContextType {
   navbarActive: boolean;

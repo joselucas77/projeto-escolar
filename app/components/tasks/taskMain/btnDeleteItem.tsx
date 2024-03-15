@@ -1,6 +1,6 @@
 import React from "react";
 import { IoTrash } from "react-icons/io5";
-import { useAppContext } from "../../../utils/context";
+import { useAppContext } from "../../../api/utils/context";
 
 function BtnDeleteItem() {
   const { openToast } = useAppContext();

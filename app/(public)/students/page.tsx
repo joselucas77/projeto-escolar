@@ -1,6 +1,6 @@
 "use client";
 import StudentsIndex from "../../components/students";
-import { useAppContext } from "../../utils/context";
+import { useAppContext } from "../../api/utils/context";
 
 export default function Students() {
   const { navbarActive } = useAppContext();

@@ -1,7 +1,7 @@
 import React from "react";
 import Pagination from "./pagination";
 import Table from "./table";
-import { useAppContext } from "../../utils/context";
+import { useAppContext } from "../../api/utils/context";
 import SearchInput from "./searchInput";
 
 function StudentsIndex() {

@@ -1,5 +1,5 @@
 "use client";
-import { useAppContext } from "../utils/context";
+import { useAppContext } from "../api/utils/context";
 
 export default function Home() {
   const { navbarActive } = useAppContext();

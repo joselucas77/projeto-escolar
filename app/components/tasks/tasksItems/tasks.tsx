@@ -3,7 +3,7 @@ import Items from "./items";
 import BtnEditItem from "../taskMain/btnEditItem";
 import BtnDeleteItem from "../taskMain/btnDeleteItem";
 import BtnDoneTask from "../taskMain/btnDoneTask";
-import { useAppContext } from "../../../utils/context";
+import { useAppContext } from "../../../api/utils/context";
 
 const Tasks = () => {
   const { currentItems } = useAppContext();

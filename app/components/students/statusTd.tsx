@@ -30,7 +30,7 @@ const StatusTd = ({ status }: StatusProps) => {
     }
   };
 
-  return <td className="px-6 py-4 uppercase">{statusText()}</td>;
+  return <td className="px-6 py-2 uppercase">{statusText()}</td>;
 };
 
 export default StatusTd;

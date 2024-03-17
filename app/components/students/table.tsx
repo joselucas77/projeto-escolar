@@ -1,6 +1,7 @@
 import React from "react";
 import { useAppContext } from "../../api/utils/context";
 import StatusTd from "./statusTd";
+import Link from "next/link";
 
 function Table() {
   const { currentPersons } = useAppContext();
@@ -38,14 +39,14 @@ function Table() {
         <tbody>
           {currentPersons.map((person) => (
             <tr
-              key={person.registration}
+              key={person.id}
               className="bg-white border-b last:border-none dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
             >
               <th
                 scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
-                {person.registration}
+                {person.id}
               </th>
               <td className="px-6 py-2">
                 <div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
@@ -63,18 +64,19 @@ function Table() {
                   </svg>
                 </div>
               </td>
-              <td className="px-6 py-4">{person.name}</td>
-              <td className="px-6 py-4">{person.surname}</td>
-              <td className="px-6 py-4">{person.age}</td>
-              <td className="px-6 py-4">{person.sex}</td>
+              <td className="px-6 py-2">{person.name}</td>
+              <td className="px-6 py-2">{person.surname}</td>
+              <td className="px-6 py-2">{person.age}</td>
+              <td className="px-6 py-2">{person.sex}</td>
               <StatusTd status={person.status} />
-              <td className="px-6 py-4 text-right">
-                <a
-                  href="#"
+              <td className="px-6 py-2 text-right">
+                <Link
+                  href="/student/[id]"
+                  as={`/student/${person.id}`}
                   className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                 >
                   Ver Perfil
-                </a>
+                </Link>
               </td>
             </tr>
           ))}

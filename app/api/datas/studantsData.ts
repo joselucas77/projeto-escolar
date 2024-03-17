@@ -2,7 +2,7 @@ export type SexType = "masculino" | "feminino";
 export type Status = "aprovado" | "reprovado" | "pendente";
 
 export interface Person {
-  registration: number;
+  id: number;
   profile: string;
   name: string;
   surname: string;
@@ -13,7 +13,7 @@ export interface Person {
 
 export const Persons: Person[] = [
   {
-    registration: 1,
+    id: 1,
     profile: "string",
     name: "José",
     surname: "Lucas",
@@ -22,7 +22,7 @@ export const Persons: Person[] = [
     status: "aprovado",
   },
   {
-    registration: 2,
+    id: 2,
     profile: "string",
     name: "Ana",
     surname: "Silva",
@@ -31,7 +31,7 @@ export const Persons: Person[] = [
     status: "aprovado",
   },
   {
-    registration: 3,
+    id: 3,
     profile: "string",
     name: "Carlos",
     surname: "Pereira",
@@ -40,7 +40,7 @@ export const Persons: Person[] = [
     status: "pendente",
   },
   {
-    registration: 4,
+    id: 4,
     profile: "string",
     name: "Mariana",
     surname: "Ferreira",
@@ -49,7 +49,7 @@ export const Persons: Person[] = [
     status: "reprovado",
   },
   {
-    registration: 5,
+    id: 5,
     profile: "string",
     name: "Felipe",
     surname: "Oliveira",
@@ -58,7 +58,7 @@ export const Persons: Person[] = [
     status: "aprovado",
   },
   {
-    registration: 6,
+    id: 6,
     profile: "string",
     name: "Juliana",
     surname: "Santos",
@@ -67,7 +67,7 @@ export const Persons: Person[] = [
     status: "pendente",
   },
   {
-    registration: 7,
+    id: 7,
     profile: "string",
     name: "Ricardo",
     surname: "Cunha",
@@ -76,7 +76,7 @@ export const Persons: Person[] = [
     status: "reprovado",
   },
   {
-    registration: 8,
+    id: 8,
     profile: "string",
     name: "Camila",
     surname: "Lima",
@@ -85,7 +85,7 @@ export const Persons: Person[] = [
     status: "aprovado",
   },
   {
-    registration: 9,
+    id: 9,
     profile: "string",
     name: "Vinícius",
     surname: "Martins",
@@ -94,7 +94,7 @@ export const Persons: Person[] = [
     status: "pendente",
   },
   {
-    registration: 10,
+    id: 10,
     profile: "string",
     name: "Aline",
     surname: "Almeida",
@@ -103,7 +103,7 @@ export const Persons: Person[] = [
     status: "reprovado",
   },
   {
-    registration: 11,
+    id: 11,
     profile: "string",
     name: "Lucas",
     surname: "Rodrigues",
@@ -112,7 +112,7 @@ export const Persons: Person[] = [
     status: "aprovado",
   },
   {
-    registration: 12,
+    id: 12,
     profile: "string",
     name: "Fernanda",
     surname: "Nunes",
@@ -121,7 +121,7 @@ export const Persons: Person[] = [
     status: "pendente",
   },
   {
-    registration: 13,
+    id: 13,
     profile: "string",
     name: "Gustavo",
     surname: "Gomes",
@@ -130,7 +130,7 @@ export const Persons: Person[] = [
     status: "reprovado",
   },
   {
-    registration: 14,
+    id: 14,
     profile: "string",
     name: "Natália",
     surname: "Costa",
@@ -139,7 +139,7 @@ export const Persons: Person[] = [
     status: "aprovado",
   },
   {
-    registration: 15,
+    id: 15,
     profile: "string",
     name: "Pedro",
     surname: "Sousa",
@@ -148,7 +148,7 @@ export const Persons: Person[] = [
     status: "pendente",
   },
   {
-    registration: 16,
+    id: 16,
     profile: "string",
     name: "Larissa",
     surname: "Mendes",
@@ -157,7 +157,7 @@ export const Persons: Person[] = [
     status: "reprovado",
   },
   {
-    registration: 17,
+    id: 17,
     profile: "string",
     name: "Rafael",
     surname: "Oliveira",
@@ -166,7 +166,7 @@ export const Persons: Person[] = [
     status: "aprovado",
   },
   {
-    registration: 18,
+    id: 18,
     profile: "string",
     name: "Isabela",
     surname: "Santana",
@@ -175,7 +175,7 @@ export const Persons: Person[] = [
     status: "pendente",
   },
   {
-    registration: 19,
+    id: 19,
     profile: "string",
     name: "Thiago",
     surname: "Lopes",
@@ -184,7 +184,7 @@ export const Persons: Person[] = [
     status: "reprovado",
   },
   {
-    registration: 20,
+    id: 20,
     profile: "string",
     name: "Gabriela",
     surname: "Pereira",
@@ -193,3 +193,7 @@ export const Persons: Person[] = [
     status: "aprovado",
   },
 ];
+
+export function getStudentById(id: number): Person | undefined {
+  return Persons.find((student) => student.id === id);
+}

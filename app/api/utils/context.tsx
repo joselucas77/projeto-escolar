@@ -9,6 +9,8 @@ import {
 } from "react";
 import { Context, ITEMS } from "../datas/taskData";
 import { Persons, Person } from "../datas/studantsData";
+import Form from "@/app/components/tasks/modal/form";
+import PopUp from "@/app/components/modal/pop-up";
 
 interface AppContextType {
   navbarActive: boolean;
@@ -23,6 +25,10 @@ interface AppContextType {
   currentPersons: Person[];
   handlePageChange: (pageNumber: number) => void;
   setSearch: Dispatch<SetStateAction<string>>;
+  modalContent: React.ReactNode;
+  setModalContent: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+  openFormModal: () => void;
+  openPopUpModal: () => void;
   toggleNavbar: () => void;
   openModal: () => void;
   closeModal: () => void;
@@ -40,6 +46,7 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
   const [toast, setToast] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
+  const [modalContent, setModalContent] = useState<React.ReactNode>(null);
 
   const itemsPerPage = 8;
 
@@ -81,11 +88,22 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
   };
 
   const openToast = () => {
+    closeModal();
     setToast(true);
   };
 
   const closeToast = () => {
     setToast(false);
+  };
+
+  const openFormModal = () => {
+    openModal();
+    setModalContent(<Form />);
+  };
+
+  const openPopUpModal = () => {
+    openModal();
+    setModalContent(<PopUp />);
   };
 
   return (
@@ -108,6 +126,10 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         toast,
         openToast,
         closeToast,
+        modalContent,
+        openFormModal,
+        openPopUpModal,
+        setModalContent,
       }}
     >
       {children}

@@ -1,9 +1,8 @@
 import React from "react";
 import Items from "./items";
-import BtnEditItem from "../taskMain/btnEditItem";
-import BtnDeleteItem from "../taskMain/btnDeleteItem";
 import BtnDoneTask from "../taskMain/btnDoneTask";
 import { useAppContext } from "../../../api/utils/context";
+import Dropdown from "../taskMain/dropdown";
 
 const Tasks = () => {
   const { currentItems } = useAppContext();
@@ -18,8 +17,7 @@ const Tasks = () => {
           <div className="flex flex-col justify-end text-center mt-3">
             <BtnDoneTask />
           </div>
-          <BtnEditItem />
-          <BtnDeleteItem />
+          <Dropdown />
         </div>
       ))}
     </>

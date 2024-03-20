@@ -1,41 +1,30 @@
-import React, { useEffect, useState } from "react";
+import { useAppContext } from "@/app/api/utils/context";
+import React, { useEffect } from "react";
 import {
   IoArrowBackCircleOutline,
   IoArrowForwardCircleOutline,
 } from "react-icons/io5";
 
-interface PaginationProps {
-  currentPage: number;
-  totalItems: number;
-  itemsPerPage: number;
-  onPageChange: (pageNumber: number) => void;
-}
-
-const Pagination: React.FC<PaginationProps> = ({
-  currentPage,
-  totalItems,
-  itemsPerPage,
-  onPageChange,
-}) => {
-  const [canGoBack, setCanGoBack] = useState(true);
-  const [canGoForward, setCanGoForward] = useState(true);
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+const Pagination = () => {
+  const {
+    currentPageItems,
+    canGoBack,
+    setCanGoBack,
+    canGoForward,
+    setCanGoForward,
+    totalItemsPages,
+    handleItemsPageChange,
+  } = useAppContext();
 
   useEffect(() => {
-    setCanGoBack(currentPage > 1);
-    setCanGoForward(currentPage < totalPages);
-  }, [currentPage, totalPages]);
-
-  const handlePageClick = (pageNumber: number) => {
-    if (pageNumber >= 1 && pageNumber <= totalPages) {
-      onPageChange(pageNumber);
-    }
-  };
+    setCanGoBack(currentPageItems > 1);
+    setCanGoForward(currentPageItems < totalItemsPages);
+  }, [currentPageItems, totalItemsPages, setCanGoBack, setCanGoForward]);
 
   return (
     <div className="relative flex w-20 -top-8 left-[calc(100%-47%)]">
       <IoArrowBackCircleOutline
-        onClick={() => handlePageClick(currentPage - 1)}
+        onClick={() => handleItemsPageChange(currentPageItems - 1)}
         className={`text-4xl rounded-full shadow-gray-300 shadow dark:shadow dark:shadow-gray-900 ${
           canGoBack
             ? "text-gray-400 dark:text-gray-950 cursor-pointer"
@@ -43,7 +32,7 @@ const Pagination: React.FC<PaginationProps> = ({
         }`}
       />
       <IoArrowForwardCircleOutline
-        onClick={() => handlePageClick(currentPage + 1)}
+        onClick={() => handleItemsPageChange(currentPageItems + 1)}
         className={`text-4xl rounded-full shadow-gray-300 shadow dark:shadow dark:shadow-gray-900 ${
           canGoForward
             ? "text-gray-400 dark:text-gray-950 cursor-pointer "

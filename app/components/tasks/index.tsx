@@ -1,25 +1,14 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import SearchInput from "./taskMain/searchInput";
 import Tasks from "./tasksItems/tasks";
 import { useAppContext } from "../../api/utils/context";
 import Pagination from "./taskMain/pagination";
 import Modal from "../modal/modal";
-import Form from "./modal/form";
-import PopUp from "../modal/pop-up";
 import NewTaskButton from "./taskMain/btnNewTasks";
 
 function TasksIndex() {
-  const {
-    search,
-    setSearch,
-    currentPage,
-    items,
-    itemsPerPage,
-    handlePageChange,
-    modal,
-    modalContent,
-  } = useAppContext();
+  const { search, setSearch, modal, modalContent } = useAppContext();
   return (
     <div className="relative w-full h-full grid overflow-x-auto">
       <div className="w-full h-full overflow-y-auto">
@@ -30,12 +19,7 @@ function TasksIndex() {
         <div className="flex">
           <NewTaskButton />
           <SearchInput search={search} setSearch={setSearch} />
-          <Pagination
-            currentPage={currentPage}
-            totalItems={items.length}
-            itemsPerPage={itemsPerPage}
-            onPageChange={handlePageChange}
-          />
+          <Pagination />
         </div>
         <div className="grid gap-y-6 my-4 mx-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
           <Tasks />

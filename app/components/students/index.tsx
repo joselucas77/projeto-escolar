@@ -6,14 +6,7 @@ import SearchInput from "./searchInput";
 import DownloadTable from "./downloadBtn";
 
 function StudentsIndex() {
-  const {
-    currentPage,
-    items,
-    itemsPerPage,
-    handlePageChange,
-    search,
-    setSearch,
-  } = useAppContext();
+  const { search, setSearch } = useAppContext();
   return (
     <div>
       <div className="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
@@ -21,12 +14,7 @@ function StudentsIndex() {
         <DownloadTable />
       </div>
       <Table />
-      <Pagination
-        currentPage={currentPage}
-        totalItems={items.length}
-        itemsPerPage={itemsPerPage}
-        onPageChange={handlePageChange}
-      />
+      <Pagination />
     </div>
   );
 }

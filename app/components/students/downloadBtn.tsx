@@ -1,11 +1,39 @@
 import React from "react";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
+import { useAppContext } from "@/app/api/utils/context";
 
 const DownloadTable = () => {
+  const { currentPersons } = useAppContext();
+
+  const exportPdf = async () => {
+    const doc = new jsPDF({ orientation: "landscape" });
+    autoTable(doc, {
+      head: [["Matrícula", "Nome", "Sobrenome", "Idade", "Sexo", "Status"]],
+      body: currentPersons.map((key) => [
+        key.id,
+        key.name,
+        key.surname,
+        key.age,
+        key.sex,
+        key.status,
+      ]),
+    });
+
+    doc.save("table.pdf");
+
+    // const doc = new jsPDF({ orientation: "landscape" });
+    // autoTable(doc, {
+    //   html: "#my-table",
+    // });
+    // doc.save("table.pdf");
+  };
   return (
     <div className="relative justify-end items-center">
       <button
         type="button"
         className="py-2 px-3 inline-flex items-center text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+        onClick={exportPdf}
       >
         <svg
           className="w-3 h-3 me-1.5"

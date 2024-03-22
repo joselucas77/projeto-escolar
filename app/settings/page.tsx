@@ -1,5 +1,5 @@
 "use client";
-import { useAppContext } from "../../api/utils/context";
+import { useAppContext } from "@/contexts/context";
 
 export default function Settings() {
   const { navbarActive } = useAppContext();

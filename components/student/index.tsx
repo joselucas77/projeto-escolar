@@ -1,8 +1,8 @@
 import React from "react";
 import Table from "./table";
 import ProfileCard from "./profileCard";
-import { getStudentById } from "@/app/api/datas/studantsData";
 import ScoreCard from "./scoreCard";
+import { getStudentById } from "@/api/datas/studantsData";
 
 interface StudantProps {
   params: { id: string };

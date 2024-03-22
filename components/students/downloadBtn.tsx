@@ -1,7 +1,7 @@
 import React from "react";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
-import { useAppContext } from "@/app/api/utils/context";
+import { useAppContext } from "@/contexts/context";
 
 const DownloadTable = () => {
   const { currentPersons } = useAppContext();

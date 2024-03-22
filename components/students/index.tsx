@@ -1,9 +1,9 @@
 import React from "react";
 import Pagination from "./pagination";
 import Table from "./table";
-import { useAppContext } from "../../api/utils/context";
 import SearchInput from "./searchInput";
 import DownloadTable from "./downloadBtn";
+import { useAppContext } from "@/contexts/context";
 
 function StudentsIndex() {
   const { search, setSearch } = useAppContext();

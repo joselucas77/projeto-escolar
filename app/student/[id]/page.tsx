@@ -1,8 +1,7 @@
 "use client";
+import Index from "@/components/student";
+import { useAppContext } from "@/contexts/context";
 import React from "react";
-import { getStudentById } from "../../../api/datas/studantsData";
-import { useAppContext } from "../../../api/utils/context";
-import Index from "@/app/components/student";
 
 interface StudantProps {
   params: { id: string };
@@ -19,8 +18,6 @@ const Student = ({ params }: StudantProps) => {
       }`}
     >
       <div className="bg-white relative w-full h-full rounded-lg p-5 text-gray-900 dark:text-white dark:bg-gray-800">
-        {/* <Card name={student.name} surname={student.surname} />
-        <Table /> */}
         <Index params={params} />
       </div>
     </div>

@@ -1,8 +1,8 @@
 import React from "react";
 import Items from "./items";
 import BtnDoneTask from "../taskMain/btnDoneTask";
-import { useAppContext } from "../../../api/utils/context";
 import Dropdown from "../taskMain/dropdown";
+import { useAppContext } from "@/contexts/context";
 
 const Tasks = () => {
   const { currentItems } = useAppContext();

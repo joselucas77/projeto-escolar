@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import Login from "../../components/(auth)/login";
-import Panel from "../../components/(auth)/panel";
-import Register from "../../components/(auth)/register";
+// import Login from "../../components/(auth)/login";
+// import Panel from "../../components/(auth)/panel";
+// import Register from "../../components/(auth)/register";
 
 const Auth = () => {
   const [addClass, setAddClass] = useState(false);
@@ -25,11 +25,11 @@ const Auth = () => {
             addClass ? "left-1/4" : "left-3/4"
           }`}
         >
-          <Login addClass={addClass} />
-          <Register addClass={addClass} />
+          {/* <Login addClass={addClass} />
+          <Register addClass={addClass} /> */}
         </div>
       </div>
-      <Panel changeMode={changeMode} addClass={addClass} />
+      {/* <Panel changeMode={changeMode} addClass={addClass} /> */}
     </div>
   );
 };

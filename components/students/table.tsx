@@ -1,7 +1,7 @@
 import React from "react";
-import { useAppContext } from "../../api/utils/context";
 import StatusTd from "./statusTd";
 import Link from "next/link";
+import { useAppContext } from "@/contexts/context";
 
 function Table() {
   const { currentPersons } = useAppContext();

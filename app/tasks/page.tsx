@@ -1,5 +1,5 @@
 "use client";
-import { useAppContext } from "../../api/utils/context";
+import { useAppContext } from "@/contexts/context";
 import TasksIndex from "../../components/tasks";
 
 export default function Tasks() {

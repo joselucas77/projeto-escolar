@@ -2,10 +2,10 @@
 import React from "react";
 import SearchInput from "./taskMain/searchInput";
 import Tasks from "./tasksItems/tasks";
-import { useAppContext } from "../../api/utils/context";
 import Pagination from "./taskMain/pagination";
 import Modal from "../modal/modal";
 import NewTaskButton from "./taskMain/btnNewTasks";
+import { useAppContext } from "@/contexts/context";
 
 function TasksIndex() {
   const { search, setSearch, modal, modalContent } = useAppContext();

@@ -2,7 +2,7 @@ import React from "react";
 import Table from "./table";
 import ProfileCard from "./profileCard";
 import ScoreCard from "./scoreCard";
-import { getStudentById } from "@/api/datas/studantsData";
+import { getStudentById } from "@/api/datas/studants";
 
 interface StudantProps {
   params: { id: string };

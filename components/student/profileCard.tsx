@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import img from "../../public/profile.jpg";
 import StatusTd from "../students/statusTd";
-import { Status } from "@/api/datas/studantsData";
+import { Status } from "@/api/datas/studants";
 
 const ProfileCard = ({
   name,

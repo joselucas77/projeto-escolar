@@ -9,23 +9,14 @@ const Pagination = () => {
     setCanGoBack,
     setCanGoForward,
     totalPersonsPages,
-    handlePersonsPageChange,
+    handleBackClickTable,
+    handleForwardClickTable,
   } = useAppContext();
 
   useEffect(() => {
     setCanGoBack(currentPagePersons > 1);
     setCanGoForward(currentPagePersons < totalPersonsPages);
   }, [currentPagePersons, totalPersonsPages, setCanGoBack, setCanGoForward]);
-
-  const handleBackClick = () => {
-    if (!canGoBack) return;
-    handlePersonsPageChange(currentPagePersons - 1);
-  };
-
-  const handleForwardClick = () => {
-    if (!canGoForward) return;
-    handlePersonsPageChange(currentPagePersons + 1);
-  };
 
   return (
     <nav
@@ -50,7 +41,7 @@ const Pagination = () => {
                 ? "text-gray-500 hover:text-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 cursor-pointer"
                 : "text-gray-300 dark:text-gray-600 cursor-default"
             }`}
-            onClick={handleBackClick}
+            onClick={handleBackClickTable}
           >
             Anterior
           </div>
@@ -62,7 +53,7 @@ const Pagination = () => {
                 ? "text-gray-500 hover:text-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 cursor-pointer"
                 : "text-gray-300 dark:text-gray-600 cursor-default"
             }`}
-            onClick={handleForwardClick}
+            onClick={handleForwardClickTable}
           >
             Próximo
           </div>

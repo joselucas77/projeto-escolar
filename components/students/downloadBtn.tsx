@@ -21,12 +21,6 @@ const DownloadTable = () => {
     });
 
     doc.save("table.pdf");
-
-    // const doc = new jsPDF({ orientation: "landscape" });
-    // autoTable(doc, {
-    //   html: "#my-table",
-    // });
-    // doc.save("table.pdf");
   };
   return (
     <div className="relative justify-end items-center">

@@ -1,55 +1,10 @@
 "use client";
-import { Person, Persons } from "@/api/datas/studantsData";
-import { Context, ITEMS } from "@/api/datas/taskData";
+import React, { createContext, useContext, useState, ReactNode } from "react";
+import { Persons } from "@/api/datas/studants";
+import { Context } from "@/api/datas/task";
 import PopUp from "@/components/modal/pop-up";
-import Form from "@/components/tasks/modal/form";
-import React, {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-  Dispatch,
-  SetStateAction,
-} from "react";
-// import { Context, ITEMS } from "../datas/taskData";
-// import { Persons, Person } from "../datas/studantsData";
-// import Form from "@/app/components/tasks/modal/form";
-// import PopUp from "@/app/components/modal/pop-up";
-
-interface AppContextType {
-  navbarActive: boolean;
-  modal: boolean;
-  toast: boolean;
-  canGoBack: boolean;
-  canGoForward: boolean;
-  isOpen: boolean;
-  currentPageItems: number;
-  currentPagePersons: number;
-  itemsPerPage: number;
-  totalItemsPages: number;
-  totalPersonsPages: number;
-  search: string;
-  items: ITEMS[];
-  persons: Person[];
-  currentItems: ITEMS[];
-  currentPersons: Person[];
-  handleItemsPageChange: (pageNumber: number) => void;
-  handlePersonsPageChange: (pageNumber: number) => void;
-  setSearch: Dispatch<SetStateAction<string>>;
-  setCanGoBack: React.Dispatch<React.SetStateAction<boolean>>;
-  setCanGoForward: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  modalContent: React.ReactNode;
-  setModalContent: React.Dispatch<React.SetStateAction<React.ReactNode>>;
-  openFormModal: () => void;
-  openPopUpModal: () => void;
-  toggleNavbar: () => void;
-  openModal: () => void;
-  closeModal: () => void;
-  openToast: () => void;
-  closeToast: () => void;
-  toggleDropdown: () => void;
-}
+import FormModal from "@/components/tasks/modal/form";
+import { AppContextType } from "@/types/appContext";
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -66,13 +21,15 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
   const [canGoBack, setCanGoBack] = useState(true);
   const [canGoForward, setCanGoForward] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+  const [addClass, setAddClass] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
 
   const itemsPerPage = 8;
 
   const items = Context.filter(
     (item) =>
       item.title.toLowerCase().includes(search.toLowerCase()) ||
-      item.text.toLowerCase().includes(search.toLowerCase()) ||
+      item.description.toLowerCase().includes(search.toLowerCase()) ||
       item.date.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -94,6 +51,26 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
   const indexOfFirstPerson = indexOfLastPerson - itemsPerPage;
   const currentPersons = persons.slice(indexOfFirstPerson, indexOfLastPerson);
   const totalPersonsPages = Math.ceil(persons.length / itemsPerPage);
+
+  const handleBackClickTable = () => {
+    if (!canGoBack) return;
+    handlePersonsPageChange(currentPagePersons - 1);
+  };
+
+  const handleForwardClickTable = () => {
+    if (!canGoForward) return;
+    handlePersonsPageChange(currentPagePersons + 1);
+  };
+
+  const handleBackClickTask = () => {
+    if (!canGoBack) return;
+    handleItemsPageChange(currentPageItems - 1);
+  };
+
+  const handleForwardClickTask = () => {
+    if (!canGoForward) return;
+    handleItemsPageChange(currentPageItems + 1);
+  };
 
   const toggleNavbar = () => {
     setNavbarActive(!navbarActive);
@@ -124,11 +101,6 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
     setToast(false);
   };
 
-  const openFormModal = () => {
-    openModal();
-    setModalContent(<Form />);
-  };
-
   const openPopUpModal = () => {
     openModal();
     setModalContent(<PopUp />);
@@ -136,6 +108,10 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
+  };
+
+  const changeMode = () => {
+    setAddClass(!addClass);
   };
 
   return (
@@ -161,7 +137,6 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         openToast,
         closeToast,
         modalContent,
-        openFormModal,
         openPopUpModal,
         setModalContent,
         setCanGoBack,
@@ -173,6 +148,15 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         isOpen,
         setIsOpen,
         toggleDropdown,
+        addClass,
+        setAddClass,
+        changeMode,
+        theme,
+        setTheme,
+        handleBackClickTable,
+        handleBackClickTask,
+        handleForwardClickTable,
+        handleForwardClickTask,
       }}
     >
       {children}

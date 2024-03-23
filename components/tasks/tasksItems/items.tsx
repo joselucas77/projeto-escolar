@@ -2,18 +2,23 @@ import React from "react";
 
 interface Context {
   title: string;
-  text: string;
+  description: string;
   date: string;
 }
 
-function Items({ title, text, date }: Context) {
+function formatDate(date: string): string {
+  const [year, month, day] = date.split("-");
+  return `${day}/${month}/${year}`;
+}
+
+function Items({ title, description, date }: Context) {
   return (
     <>
       <h1 className="text-lg font-semibold">{title}</h1>
       <p>
-        <em>{text}</em>
+        <em>{description}</em>
       </p>
-      <p className="mt-2">{date}</p>
+      <p className="mt-2">{formatDate(date)}</p>
     </>
   );
 }

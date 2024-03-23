@@ -1,36 +1,21 @@
 "use client";
 import { useAppContext } from "@/contexts/context";
 import React, { useEffect, useState } from "react";
-import { Zoom, toast } from "react-toastify";
-
-const notifySuccessDelete = (theme: "dark" | "light" | "colored") => {
-  toast.success("A Tarefa foi deletada!", {
-    position: "top-center",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: theme,
-    transition: Zoom,
-  });
-};
+import { SuccessToast } from "../toast/success";
 
 const PopUp = () => {
-  const { closeModal } = useAppContext();
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const { theme, setTheme, closeModal } = useAppContext();
 
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
     setTheme(
       storedTheme === "dark" || storedTheme === "light" ? storedTheme : "light"
     );
-  }, []);
+  }, [setTheme]);
 
   const handleDelete = () => {
     closeModal();
-    notifySuccessDelete(theme);
+    SuccessToast(theme, "A Tarefa foi deletada!");
   };
   return (
     <div className="relative p-4 w-full max-w-md max-h-full">

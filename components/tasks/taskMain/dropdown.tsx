@@ -1,8 +1,10 @@
 import { useAppContext } from "@/contexts/context";
 import React, { useEffect, useRef, useState } from "react";
+import { Task } from "@/api/datas/task";
+import FormModal from "../modal/form";
 
-const Dropdown = () => {
-  const { openPopUpModal } = useAppContext();
+const Dropdown = ({ title, description, date }: Task) => {
+  const { openPopUpModal, openModal, setModalContent } = useAppContext();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -26,6 +28,19 @@ const Dropdown = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const openFormModal = () => {
+    openModal();
+    setModalContent(
+      <FormModal
+        titleForm="Editar Tarefa"
+        titleTask={title}
+        descriptioTask={description}
+        dateTask={date}
+      />
+    );
+  };
+
   return (
     <div className="absolute top-8 right-4 -translate-y-2/4" ref={dropdownRef}>
       <button
@@ -50,7 +65,10 @@ const Dropdown = () => {
       >
         <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
           <li>
-            <button className="block px-4 py-2 hover:text-gray-900 dark:hover:text-white">
+            <button
+              className="block px-4 py-2 hover:text-gray-900 dark:hover:text-white"
+              onClick={openFormModal}
+            >
               Editar
             </button>
           </li>

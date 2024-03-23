@@ -2,15 +2,11 @@
 import Login from "@/components/(login)/login";
 import Panel from "@/components/(login)/panel";
 import Register from "@/components/(login)/register";
-import { useState } from "react";
 import "./style.css";
+import { useAppContext } from "@/contexts/context";
 
 const Auth = () => {
-  const [addClass, setAddClass] = useState(false);
-
-  const changeMode = () => {
-    setAddClass(!addClass);
-  };
+  const { addClass, changeMode } = useAppContext();
 
   return (
     <div

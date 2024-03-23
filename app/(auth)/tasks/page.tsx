@@ -1,6 +1,6 @@
 "use client";
+import TasksIndex from "@/components/tasks";
 import { useAppContext } from "@/contexts/context";
-import TasksIndex from "../../components/tasks";
 
 export default function Tasks() {
   const { navbarActive } = useAppContext();

@@ -1,8 +1,9 @@
 "use client";
+import Login from "@/components/(login)/login";
+import Panel from "@/components/(login)/panel";
+import Register from "@/components/(login)/register";
 import { useState } from "react";
-// import Login from "../../components/(auth)/login";
-// import Panel from "../../components/(auth)/panel";
-// import Register from "../../components/(auth)/register";
+import "./style.css";
 
 const Auth = () => {
   const [addClass, setAddClass] = useState(false);
@@ -13,7 +14,7 @@ const Auth = () => {
 
   return (
     <div
-      className={`relative w-full min-h-screen overflow-hidden bg-white before:absolute before:w-[2000px] before:h-[2000px] before:rounded-[50%] before:bg-gradient-to-tl before:from-blue before:to-[#60a5fa] before:top-[-10%] before:right-[48%] before:-translate-y-2/4 before:z-[6] before:duration-[1.8s] before:ease-in-out ${
+      className={`relative w-full min-h-screen overflow-hidden bg-white before:absolute before:w-[2000px] before:h-[2000px] before:rounded-[50%] before:bg-gradient-to-tl before:from-blue-400 before:to-blue-800 before:top-[-10%] before:right-[48%] before:-translate-y-2/4 before:z-[6] before:duration-[1.8s] before:ease-in-out ${
         addClass
           ? "before:translate-x-[100%] before:-translate-y-[50%] before:right-[52%]"
           : ""
@@ -25,11 +26,11 @@ const Auth = () => {
             addClass ? "left-1/4" : "left-3/4"
           }`}
         >
-          {/* <Login addClass={addClass} />
-          <Register addClass={addClass} /> */}
+          <Login addClass={addClass} />
+          <Register addClass={addClass} />
         </div>
       </div>
-      {/* <Panel changeMode={changeMode} addClass={addClass} /> */}
+      <Panel changeMode={changeMode} addClass={addClass} />
     </div>
   );
 };

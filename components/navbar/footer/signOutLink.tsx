@@ -5,7 +5,7 @@ import { IoLogOutOutline } from "react-icons/io5";
 function SignOutLink() {
   return (
     <>
-      <Link href={"#"} className="relative flex whitespace-nowrap">
+      <Link href="/login" className="relative flex whitespace-nowrap">
         <div className="relative flex items-center justify-center min-w-16 h-16 text-[1.5em] duration-500">
           <IoLogOutOutline />
         </div>

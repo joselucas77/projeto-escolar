@@ -4,6 +4,8 @@ import React, { useEffect } from "react";
 const Pagination = () => {
   const {
     currentPagePersons,
+    canGoBack,
+    canGoForward,
     setCanGoBack,
     setCanGoForward,
     totalPersonsPages,
@@ -14,6 +16,16 @@ const Pagination = () => {
     setCanGoBack(currentPagePersons > 1);
     setCanGoForward(currentPagePersons < totalPersonsPages);
   }, [currentPagePersons, totalPersonsPages, setCanGoBack, setCanGoForward]);
+
+  const handleBackClick = () => {
+    if (!canGoBack) return;
+    handlePersonsPageChange(currentPagePersons - 1);
+  };
+
+  const handleForwardClick = () => {
+    if (!canGoForward) return;
+    handlePersonsPageChange(currentPagePersons + 1);
+  };
 
   return (
     <nav
@@ -33,16 +45,24 @@ const Pagination = () => {
       <ul className="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
         <li>
           <div
-            className="flex items-center justify-center cursor-pointer px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            onClick={() => handlePersonsPageChange(currentPagePersons - 1)}
+            className={`flex items-center justify-center px-3 h-8 ms-0 leading-tight bg-white border border-gray-300 rounded-s-lg  dark:bg-gray-800 dark:border-gray-700 ${
+              canGoBack
+                ? "text-gray-500 hover:text-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 cursor-pointer"
+                : "text-gray-300 dark:text-gray-600 cursor-default"
+            }`}
+            onClick={handleBackClick}
           >
             Anterior
           </div>
         </li>
         <li>
           <div
-            className="flex items-center justify-center cursor-pointer px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            onClick={() => handlePersonsPageChange(currentPagePersons + 1)}
+            className={`flex items-center justify-center px-3 h-8 leading-tight bg-white border border-gray-300 rounded-e-lg dark:bg-gray-800 dark:border-gray-700 ${
+              canGoForward
+                ? "text-gray-500 hover:text-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 cursor-pointer"
+                : "text-gray-300 dark:text-gray-600 cursor-default"
+            }`}
+            onClick={handleForwardClick}
           >
             Próximo
           </div>

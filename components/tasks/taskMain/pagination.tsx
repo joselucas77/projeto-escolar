@@ -21,10 +21,20 @@ const Pagination = () => {
     setCanGoForward(currentPageItems < totalItemsPages);
   }, [currentPageItems, totalItemsPages, setCanGoBack, setCanGoForward]);
 
+  const handleBackClick = () => {
+    if (!canGoBack) return;
+    handleItemsPageChange(currentPageItems - 1);
+  };
+
+  const handleForwardClick = () => {
+    if (!canGoForward) return;
+    handleItemsPageChange(currentPageItems + 1);
+  };
+
   return (
     <div className="relative flex w-20 -top-8 left-[calc(100%-47%)]">
       <IoArrowBackCircleOutline
-        onClick={() => handleItemsPageChange(currentPageItems - 1)}
+        onClick={handleBackClick}
         className={`text-4xl rounded-full shadow-gray-300 shadow dark:shadow dark:shadow-gray-900 ${
           canGoBack
             ? "text-gray-400 dark:text-gray-950 cursor-pointer"
@@ -32,7 +42,7 @@ const Pagination = () => {
         }`}
       />
       <IoArrowForwardCircleOutline
-        onClick={() => handleItemsPageChange(currentPageItems + 1)}
+        onClick={handleForwardClick}
         className={`text-4xl rounded-full shadow-gray-300 shadow dark:shadow dark:shadow-gray-900 ${
           canGoForward
             ? "text-gray-400 dark:text-gray-950 cursor-pointer "

@@ -1,49 +1,12 @@
 "use client";
 import React from "react";
-import {
-  IoHomeOutline,
-  IoPeopleOutline,
-  IoClipboardOutline,
-  IoChatbubblesOutline,
-  IoSettingsOutline,
-} from "react-icons/io5";
-import { usePathname } from "next/navigation";
 import ThemeSwitch from "./footer/themeSwitch";
 import LinksNav from "./main/linksNav";
 import SignOutLink from "./footer/signOutLink";
 import HeaderLink from "./header/headerLink";
 import { useAppContext } from "@/contexts/context";
 
-// const navItems = [
-//   {
-//     icon: <IoHomeOutline className="z-10" />,
-//     title: "Home",
-//     path: "/",
-//   },
-//   {
-//     icon: <IoPeopleOutline className="z-10" />,
-//     title: "Alunos",
-//     path: "/students",
-//   },
-//   {
-//     icon: <IoClipboardOutline className="z-10" />,
-//     title: "Tarefas",
-//     path: "/tasks",
-//   },
-//   {
-//     icon: <IoChatbubblesOutline className="z-10" />,
-//     title: "Chat",
-//     path: "/chat",
-//   },
-//   {
-//     icon: <IoSettingsOutline className="z-10" />,
-//     title: "Configurações",
-//     path: "/settings",
-//   },
-// ];
-
 function Navbar() {
-  const pathName = usePathname();
   const { navbarActive } = useAppContext();
   return (
     <nav

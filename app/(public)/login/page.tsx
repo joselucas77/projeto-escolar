@@ -2,11 +2,10 @@
 import Login from "@/components/(login)/login";
 import Panel from "@/components/(login)/panel";
 import Register from "@/components/(login)/register";
-import "./style.css";
 import { useAppContext } from "@/contexts/context";
 
 const Auth = () => {
-  const { addClass, changeMode } = useAppContext();
+  const { addClass } = useAppContext();
 
   return (
     <div
@@ -22,11 +21,11 @@ const Auth = () => {
             addClass ? "left-1/4" : "left-3/4"
           }`}
         >
-          <Login addClass={addClass} />
-          <Register addClass={addClass} />
+          <Login />
+          <Register />
         </div>
       </div>
-      <Panel changeMode={changeMode} addClass={addClass} />
+      <Panel />
     </div>
   );
 };

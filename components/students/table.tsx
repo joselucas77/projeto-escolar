@@ -1,9 +1,10 @@
+"use client";
 import React from "react";
-import StatusTd from "./statusTd";
+import StatusStudent from "./status";
 import Link from "next/link";
 import { useAppContext } from "@/contexts/context";
 
-function Table() {
+const Table = () => {
   const { currentPersons } = useAppContext();
   return (
     <div className="rounded-lg overflow-x-auto shadow-md">
@@ -71,7 +72,7 @@ function Table() {
               <td className="px-6 py-2">{person.surname}</td>
               <td className="px-6 py-2">{person.age}</td>
               <td className="px-6 py-2">{person.sex}</td>
-              <StatusTd status={person.status} />
+              <StatusStudent status={person.status} />
               <td className="px-6 py-2 text-right">
                 <Link
                   href="/student/[id]"
@@ -87,6 +88,6 @@ function Table() {
       </table>
     </div>
   );
-}
+};
 
 export default Table;

@@ -1,7 +1,10 @@
+"use client";
 import { useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
+import { useAppContext } from "@/contexts/context";
 
-function ThemeSwitch() {
+const ThemeSwitch = () => {
+  const { navbarActive } = useAppContext();
   const { theme, setTheme } = useTheme();
   const audioClickRef = useRef(new Audio("/click1.wav"));
   const audioUncheckRef = useRef(new Audio("/click2.wav"));
@@ -20,7 +23,11 @@ function ThemeSwitch() {
     }
   };
   return (
-    <>
+    <li
+      className={`relative flex justify-start items-center transition-all duration-500 whitespace-nowrap ${
+        navbarActive ? "left-4" : "left-0"
+      }`}
+    >
       <label className="flex cursor-pointer relative items-center">
         <input
           type="checkbox"
@@ -33,8 +40,8 @@ function ThemeSwitch() {
           {theme === "dark" ? "Modo Dark" : "Modo Light"}
         </span>
       </label>
-    </>
+    </li>
   );
-}
+};
 
 export default ThemeSwitch;

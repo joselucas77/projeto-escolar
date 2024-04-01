@@ -1,14 +1,9 @@
-import { useAppContext } from "@/contexts/context";
+"use client";
 import React from "react";
-import FormModal from "../modal/form";
+import { useAppContext } from "@/contexts/context";
 
-function NewTaskButton() {
-  const { openModal, setModalContent } = useAppContext();
-
-  const openFormModal = () => {
-    openModal();
-    setModalContent(<FormModal titleForm="Adicionar Tarefa" />);
-  };
+const AddTask = () => {
+  const { openFormModal } = useAppContext();
   return (
     <div className="relative w-36 -top-8 left-[calc(100%-48%)]">
       <button
@@ -19,6 +14,6 @@ function NewTaskButton() {
       </button>
     </div>
   );
-}
+};
 
-export default NewTaskButton;
+export default AddTask;

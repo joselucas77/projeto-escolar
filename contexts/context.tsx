@@ -3,8 +3,9 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 import { Persons } from "@/api/datas/studants";
 import { Context } from "@/api/datas/task";
 import PopUp from "@/components/modal/pop-up";
-import FormModal from "@/components/tasks/modal/form";
-import { AppContextType } from "@/types/appContext";
+import FormModal from "@/components/tasks/form";
+import { AppContextType } from "@/types/app-context";
+import { SuccessToast } from "@/components/toast/success";
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -22,9 +23,11 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
   const [canGoForward, setCanGoForward] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [addClass, setAddClass] = useState(false);
+  const [toastVisible, setToastVisible] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
-  const itemsPerPage = 8;
+  const studentsPerPage = 8;
+  const tasksPerPage = 6;
 
   const items = Context.filter(
     (item) =>
@@ -42,15 +45,15 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
       person.status.toLowerCase().includes(search.toLowerCase())
   );
 
-  const indexOfLastItem = currentPageItems * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const indexOfLastItem = currentPageItems * tasksPerPage;
+  const indexOfFirstItem = indexOfLastItem - tasksPerPage;
   const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
-  const totalItemsPages = Math.ceil(items.length / itemsPerPage);
+  const totalItemsPages = Math.ceil(items.length / tasksPerPage);
 
-  const indexOfLastPerson = currentPagePersons * itemsPerPage;
-  const indexOfFirstPerson = indexOfLastPerson - itemsPerPage;
+  const indexOfLastPerson = currentPagePersons * studentsPerPage;
+  const indexOfFirstPerson = indexOfLastPerson - studentsPerPage;
   const currentPersons = persons.slice(indexOfFirstPerson, indexOfLastPerson);
-  const totalPersonsPages = Math.ceil(persons.length / itemsPerPage);
+  const totalPersonsPages = Math.ceil(persons.length / studentsPerPage);
 
   const handleBackClickTable = () => {
     if (!canGoBack) return;
@@ -106,12 +109,56 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
     setModalContent(<PopUp />);
   };
 
+  const openFormModal = () => {
+    openModal();
+    setModalContent(<FormModal titleForm="Adicionar Tarefa" />);
+  };
+
+  const handleDelete = () => {
+    closeModal();
+    SuccessToast(theme, "Tarefa deletada!");
+  };
+
+  const handleUpdate = () => {
+    closeModal();
+    SuccessToast(theme, "Tarefa Alterada!");
+  };
+
+  const handleCraete = () => {
+    closeModal();
+    SuccessToast(theme, "Tarefa Criada!");
+  };
+
+  const handleTaskCompleted = () => {
+    closeModal();
+    SuccessToast(theme, "Tarefa Concluida!");
+  };
+
+  const handleSendEmail = () => {
+    closeModal();
+    SuccessToast("dark", "Verifique seu email!");
+  };
+
+  const handleRegisterUser = () => {
+    closeModal();
+    SuccessToast("dark", "Agora faça login!");
+  };
+
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
   const changeMode = () => {
     setAddClass(!addClass);
+  };
+
+  const formatDate = (date: string): string => {
+    const [year, month, day] = date.split("-");
+    return `${day}/${month}/${year}`;
+  };
+
+  const toggleToast = () => {
+    setToastVisible(!toastVisible);
   };
 
   return (
@@ -126,7 +173,8 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         currentPagePersons,
         handleItemsPageChange,
         handlePersonsPageChange,
-        itemsPerPage,
+        studentsPerPage,
+        tasksPerPage,
         items,
         currentItems,
         search,
@@ -157,6 +205,17 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         handleBackClickTask,
         handleForwardClickTable,
         handleForwardClickTask,
+        openFormModal,
+        formatDate,
+        handleDelete,
+        handleUpdate,
+        handleCraete,
+        handleTaskCompleted,
+        handleSendEmail,
+        handleRegisterUser,
+        toastVisible,
+        setToastVisible,
+        toggleToast,
       }}
     >
       {children}

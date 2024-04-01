@@ -1,13 +1,11 @@
+"use client";
 import Image from "next/image";
 import logo from "../../../public/log.svg";
 import register from "../../../public/register.svg";
+import { useAppContext } from "@/contexts/context";
 
-type AppContextType = {
-  addClass: boolean;
-  changeMode: () => void;
-};
-
-const Panel = ({ changeMode, addClass }: AppContextType) => {
+const Panel = () => {
+  const { addClass, changeMode } = useAppContext();
   return (
     <div className="absolute top-0 left-0 grid w-full h-full grid-cols-2">
       <div

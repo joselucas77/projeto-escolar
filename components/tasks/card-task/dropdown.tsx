@@ -1,7 +1,8 @@
-import { useAppContext } from "@/contexts/context";
+"use client";
 import React, { useEffect, useRef, useState } from "react";
+import { useAppContext } from "@/contexts/context";
 import { Task } from "@/api/datas/task";
-import FormModal from "../modal/form";
+import FormModal from "../form";
 
 const Dropdown = ({ title, description, date }: Task) => {
   const { openPopUpModal, openModal, setModalContent } = useAppContext();
@@ -44,7 +45,7 @@ const Dropdown = ({ title, description, date }: Task) => {
   return (
     <div className="absolute top-8 right-4 -translate-y-2/4" ref={dropdownRef}>
       <button
-        className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-gray-100 rounded-lg hover:bg-white focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+        className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-gray-200 rounded-lg hover:bg-white focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-600"
         type="button"
         onClick={toggleDropdown}
       >

@@ -1,12 +1,11 @@
 "use client";
-import React from "react";
-import ThemeSwitch from "./footer/themeSwitch";
-import LinksNav from "./main/linksNav";
-import SignOutLink from "./footer/signOutLink";
-import HeaderLink from "./header/headerLink";
 import { useAppContext } from "@/contexts/context";
+import Header from "./header";
+import Links from "./links";
+import SignOut from "./sign-out";
+import ThemeSwitch from "./theme-switch";
 
-function Navbar() {
+const Navbar = () => {
   const { navbarActive } = useAppContext();
   return (
     <nav
@@ -15,29 +14,15 @@ function Navbar() {
       }`}
     >
       <ul className="relative h-screen">
-        <header className="mb-12">
-          <li className="relative">
-            <HeaderLink />
-          </li>
-        </header>
-        <main>
-          <LinksNav />
-        </main>
+        <Header />
+        <Links />
         <footer className="absolute w-full bottom-4">
-          <li className="relative hover:bg-gradient-to-bl hover:from-gray-100 hover:to-gray-200 dark:hover:bg-gradient-to-bl dark:hover:from-gray-900 dark:hover:to-gray-800 rounded-full mb-1">
-            <SignOutLink />
-          </li>
-          <li
-            className={`relative flex justify-start items-center transition-all duration-500 whitespace-nowrap ${
-              navbarActive ? "left-4" : "left-0"
-            }`}
-          >
-            <ThemeSwitch />
-          </li>
+          <SignOut />
+          <ThemeSwitch />
         </footer>
       </ul>
     </nav>
   );
-}
+};
 
 export default Navbar;

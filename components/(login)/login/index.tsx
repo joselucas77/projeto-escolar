@@ -1,11 +1,10 @@
+"use client";
+import { useAppContext } from "@/contexts/context";
 import Link from "next/link";
 import { FaLock, FaEnvelope } from "react-icons/fa6";
 
-type AppContextType = {
-  addClass: boolean;
-};
-
-const Login = ({ addClass }: AppContextType) => {
+const Login = () => {
+  const { addClass } = useAppContext();
   return (
     <div
       className={`flex flex-col items-center justify-center p-[0_5rem] overflow-hidden col-[1_/_2] row-[1_/_2] duration-[.2s] delay-[.7s] ease-in-out ${

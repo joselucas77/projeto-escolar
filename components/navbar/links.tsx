@@ -1,12 +1,12 @@
+"use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
 import { navItems } from "./navItems";
 
-function LinksNav() {
+const Links = () => {
   const pathName = usePathname();
   return (
-    <>
+    <main>
       {navItems.map((link, index) => (
         <li
           key={index}
@@ -29,8 +29,8 @@ function LinksNav() {
           </Link>
         </li>
       ))}
-    </>
+    </main>
   );
-}
+};
 
-export default LinksNav;
+export default Links;

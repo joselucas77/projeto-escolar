@@ -25,12 +25,12 @@ export default function LoginLayout({
 }) {
   return (
     <html lang="pt-BR" className={poppins.className}>
-      <body>
+      <body className="bg-gray-300 dark:bg-gray-900">
         <AppProvider>
           <Providers>
             <Navbar />
             {children}
-            <ToastContainer />
+            <ToastContainer limit={3} />
           </Providers>
         </AppProvider>
       </body>

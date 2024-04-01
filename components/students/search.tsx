@@ -1,11 +1,9 @@
-import React, { Dispatch, SetStateAction } from "react";
+"use client";
+import React from "react";
+import { useAppContext } from "@/contexts/context";
 
-interface Search {
-  search: string;
-  setSearch: Dispatch<SetStateAction<string>>;
-}
-
-const SearchInput = ({ search, setSearch }: Search) => {
+const SearchStudent = () => {
+  const { search, setSearch } = useAppContext();
   return (
     <div className="pb-4 bg-white dark:bg-gray-800 w-80">
       <div className="relative mt-1">
@@ -42,4 +40,4 @@ const SearchInput = ({ search, setSearch }: Search) => {
   );
 };
 
-export default SearchInput;
+export default SearchStudent;

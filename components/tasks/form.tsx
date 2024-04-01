@@ -1,34 +1,6 @@
+"use client";
 import { useAppContext } from "@/contexts/context";
 import React, { useEffect, useState } from "react";
-import { Zoom, toast } from "react-toastify";
-
-const createdNewTask = (theme: "dark" | "light" | "colored") => {
-  toast.success("Tarefa criada com sucesso!", {
-    position: "top-center",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: theme,
-    transition: Zoom,
-  });
-};
-
-const updatedTask = (theme: "dark" | "light" | "colored") => {
-  toast.success("Tarefa atualizada com sucesso!", {
-    position: "top-center",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: theme,
-    transition: Zoom,
-  });
-};
 
 function FormModal({
   titleForm,
@@ -41,8 +13,7 @@ function FormModal({
   descriptioTask?: string;
   dateTask?: string;
 }) {
-  const { closeModal } = useAppContext();
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const { closeModal, handleUpdate, handleCraete, setTheme } = useAppContext();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState<string>("");
@@ -61,17 +32,7 @@ function FormModal({
       setDescription(descriptioTask);
       setDate(dateTask);
     }
-  }, [titleTask, descriptioTask, dateTask]);
-
-  const handleCreation = () => {
-    closeModal();
-    createdNewTask(theme);
-  };
-
-  const handleUpdate = () => {
-    closeModal();
-    updatedTask(theme);
-  };
+  }, [titleTask, descriptioTask, dateTask, setTheme]);
 
   const validateForm = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -96,7 +57,7 @@ function FormModal({
     if (titleTask && descriptioTask && dateTask) {
       handleUpdate();
     } else {
-      handleCreation();
+      handleCraete();
     }
 
     setTitle("");

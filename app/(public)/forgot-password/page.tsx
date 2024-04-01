@@ -1,6 +1,14 @@
-import React from "react";
+"use client";
+import { useAppContext } from "@/contexts/context";
 
 const ForgotPassword = () => {
+  const { handleSendEmail } = useAppContext();
+
+  const SendEmail = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    handleSendEmail();
+  };
+
   return (
     <div className="bg-gradient-to-t from-blue-200 to-blue-400 py-8 px-4 mx-auto w-full h-screen text-center lg:py-16 z-10 relative">
       <h1 className="mb-4 mt-24 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl">
@@ -10,7 +18,7 @@ const ForgotPassword = () => {
         Use o seu email cadastrado para recuperar a sua senha. Caso também não
         se lembre do seu email entre em contato com os administradores.
       </p>
-      <form className="w-full max-w-md mx-auto">
+      <form className="w-full max-w-md mx-auto" onSubmit={SendEmail}>
         <label
           htmlFor="default-email"
           className="mb-2 text-sm font-medium text-gray-900 sr-only"

@@ -10,9 +10,11 @@ export interface AppContextType {
   canGoForward: boolean;
   isOpen: boolean;
   addClass: boolean;
+  toastVisible: boolean;
   currentPageItems: number;
   currentPagePersons: number;
-  itemsPerPage: number;
+  studentsPerPage: number;
+  tasksPerPage: number;
   totalItemsPages: number;
   totalPersonsPages: number;
   search: string;
@@ -25,6 +27,7 @@ export interface AppContextType {
   setCanGoBack: React.Dispatch<React.SetStateAction<boolean>>;
   setCanGoForward: React.Dispatch<React.SetStateAction<boolean>>;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setToastVisible: React.Dispatch<React.SetStateAction<boolean>>;
   modalContent: React.ReactNode;
   setModalContent: React.Dispatch<React.SetStateAction<React.ReactNode>>;
   handleItemsPageChange: (pageNumber: number) => void;
@@ -41,6 +44,15 @@ export interface AppContextType {
   handleForwardClickTable: () => void;
   handleBackClickTask: () => void;
   handleForwardClickTask: () => void;
+  openFormModal: () => void;
+  handleDelete: () => void;
+  handleUpdate: () => void;
+  handleCraete: () => void;
+  handleTaskCompleted: () => void;
+  handleSendEmail: () => void;
+  handleRegisterUser: () => void;
+  toggleToast: () => void;
+  formatDate: (date: string) => string;
   theme: "light" | "dark";
   setTheme: React.Dispatch<React.SetStateAction<"light" | "dark">>;
 }

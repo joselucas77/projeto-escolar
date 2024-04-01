@@ -1,11 +1,9 @@
-import React, { Dispatch, SetStateAction } from "react";
+"use client";
+import React from "react";
+import { useAppContext } from "@/contexts/context";
 
-interface Search {
-  search: string;
-  setSearch: Dispatch<SetStateAction<string>>;
-}
-
-function SearchInput({ search, setSearch }: Search) {
+const SearchTask = () => {
+  const { search, setSearch } = useAppContext();
   return (
     <div className="relative w-64 -top-8 left-[calc(100%-48%)]">
       <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -36,6 +34,6 @@ function SearchInput({ search, setSearch }: Search) {
       />
     </div>
   );
-}
+};
 
-export default SearchInput;
+export default SearchTask;

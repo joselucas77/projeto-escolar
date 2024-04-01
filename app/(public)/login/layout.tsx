@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import "./style.css";
 import { AppProvider } from "@/contexts/context";
+import "./style.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],
@@ -22,7 +24,10 @@ export default function LoginLayout({
   return (
     <html lang="pt-BR" className={poppins.className}>
       <body>
-        <AppProvider>{children}</AppProvider>
+        <AppProvider>
+          {children}
+          <ToastContainer limit={3} />
+        </AppProvider>
       </body>
     </html>
   );

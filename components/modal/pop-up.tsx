@@ -1,10 +1,9 @@
 "use client";
+import { useEffect } from "react";
 import { useAppContext } from "@/contexts/context";
-import React, { useEffect, useState } from "react";
-import { SuccessToast } from "../toast/success";
 
 const PopUp = () => {
-  const { theme, setTheme, closeModal } = useAppContext();
+  const { setTheme, closeModal, handleDelete } = useAppContext();
 
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
@@ -13,10 +12,6 @@ const PopUp = () => {
     );
   }, [setTheme]);
 
-  const handleDelete = () => {
-    closeModal();
-    SuccessToast(theme, "A Tarefa foi deletada!");
-  };
   return (
     <div className="relative p-4 w-full max-w-md max-h-full">
       <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">

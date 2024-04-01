@@ -1,5 +1,6 @@
-import { useAppContext } from "@/contexts/context";
+"use client";
 import React, { useEffect } from "react";
+import { useAppContext } from "@/contexts/context";
 import {
   IoArrowBackCircleOutline,
   IoArrowForwardCircleOutline,

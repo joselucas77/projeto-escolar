@@ -1,17 +1,22 @@
+"use client";
+import { useAppContext } from "@/contexts/context";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa6";
 
-type AppContextType = {
-  addClass: boolean;
-};
+const Register = () => {
+  const { addClass, changeMode, handleRegisterUser } = useAppContext();
 
-const Register = ({ addClass }: AppContextType) => {
+  const Registered = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    changeMode();
+    handleRegisterUser();
+  };
   return (
     <div
       className={`flex flex-col items-center justify-center p-[0_5rem] overflow-hidden col-[1_/_2] row-[1_/_2] duration-[.2s] delay-[.7s] ease-in-out ${
         addClass ? "opacity-100	z-[2]" : "z-[1] opacity-0"
       }`}
     >
-      <form className="space-y-6 w-full max-w-96 h-full" action="#">
+      <form className="space-y-6 w-full max-w-96 h-full" onSubmit={Registered}>
         <h5 className="text-4xl font-medium text-gray-900 dark:text-white text-center">
           Registrar
         </h5>

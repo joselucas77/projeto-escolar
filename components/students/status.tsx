@@ -1,11 +1,12 @@
-import { Status } from "@/api/datas/studants";
+"use client";
 import React from "react";
+import { Status } from "@/api/datas/studants";
 
 interface StatusProps {
   status: Status;
 }
 
-const StatusTd = ({ status }: StatusProps) => {
+const StatusStudent = ({ status }: StatusProps) => {
   const statusText = () => {
     if (status === "aprovado") {
       return (
@@ -33,4 +34,4 @@ const StatusTd = ({ status }: StatusProps) => {
   return <td className="px-6 py-2 uppercase">{statusText()}</td>;
 };
 
-export default StatusTd;
+export default StatusStudent;

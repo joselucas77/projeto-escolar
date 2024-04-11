@@ -9,9 +9,9 @@ import React, {
 import { Persons } from "@/api/datas/studants";
 import { Context, Task } from "@/api/datas/task";
 import PopUp from "@/components/modal/pop-up";
-import FormModal from "@/components/tasks/form";
 import { AppContextType } from "@/types/app-context";
 import { Toast } from "@/types/toat";
+import FormModal from "@/components/tasks/form";
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -26,6 +26,7 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
 
   // Modal
   const [modal, setModal] = useState(false);
+  const [modalContent, setModalContent] = useState<React.ReactNode>(null);
 
   const openModal = () => {
     setModal(true);
@@ -35,72 +36,9 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
     setModal(false);
   };
 
-  const [currentPageItems, setCurrentPageItems] = useState(1);
-  const [currentPagePersons, setCurrentPagePersons] = useState(1);
-  const [search, setSearch] = useState("");
-  const [modalContent, setModalContent] = useState<React.ReactNode>(null);
-  const [canGoBack, setCanGoBack] = useState(true);
-  const [canGoForward, setCanGoForward] = useState(true);
-  const [isOpen, setIsOpen] = useState(false);
-  const [addClass, setAddClass] = useState(false);
-  const [toastVisible, setToastVisible] = useState(false);
-  const [theme, setTheme] = useState<"light" | "dark">("light");
-
-  const studentsPerPage = 8;
-  const tasksPerPage = 6;
-
-  const items = Context.filter(
-    (item) =>
-      item.title.toLowerCase().includes(search.toLowerCase()) ||
-      item.description.toLowerCase().includes(search.toLowerCase()) ||
-      item.date.toLowerCase().includes(search.toLowerCase())
-  );
-
-  const persons = Persons.filter(
-    (person) =>
-      person.name.toLowerCase().includes(search.toLowerCase()) ||
-      person.surname.toLowerCase().includes(search.toLowerCase()) ||
-      person.age.toLowerCase().includes(search.toLowerCase()) ||
-      person.sex.toLowerCase().includes(search.toLowerCase()) ||
-      person.status.toLowerCase().includes(search.toLowerCase())
-  );
-
-  const indexOfLastItem = currentPageItems * tasksPerPage;
-  const indexOfFirstItem = indexOfLastItem - tasksPerPage;
-  const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
-  const totalItemsPages = Math.ceil(items.length / tasksPerPage);
-
-  const indexOfLastPerson = currentPagePersons * studentsPerPage;
-  const indexOfFirstPerson = indexOfLastPerson - studentsPerPage;
-  const currentPersons = persons.slice(indexOfFirstPerson, indexOfLastPerson);
-  const totalPersonsPages = Math.ceil(persons.length / studentsPerPage);
-
-  const handleBackClickTable = () => {
-    if (!canGoBack) return;
-    handlePersonsPageChange(currentPagePersons - 1);
-  };
-
-  const handleForwardClickTable = () => {
-    if (!canGoForward) return;
-    handlePersonsPageChange(currentPagePersons + 1);
-  };
-
-  const handleBackClickTask = () => {
-    if (!canGoBack) return;
-    handleItemsPageChange(currentPageItems - 1);
-  };
-
-  const handleForwardClickTask = () => {
-    if (!canGoForward) return;
-    handleItemsPageChange(currentPageItems + 1);
-  };
-
-  const handleItemsPageChange = (pageNumber: number) => {
-    setCurrentPageItems(pageNumber);
-  };
-
-  const handlePersonsPageChange = (pageNumber: number) => {
-    setCurrentPagePersons(pageNumber);
+  const openFormModal = () => {
+    openModal();
+    setModalContent(<FormModal titleForm="Adicionar Tarefa" />);
   };
 
   const openPopUpModal = () => {
@@ -123,45 +61,8 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
     handleShowNotification("Tarefa Criada!");
   };
 
-  const handleTaskCompleted = () => {
-    handleShowNotification("Tarefa Concluida!");
-  };
-
-  const handleSendEmail = () => {
-    closeModal();
-    handleShowNotification("Verifique seu email!");
-  };
-
-  const handleRegisterUser = () => {
-    closeModal();
-    handleShowNotification("Agora faça login!");
-  };
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const changeMode = () => {
-    setAddClass(!addClass);
-  };
-
-  const formatDate = (date: string): string => {
-    const [year, month, day] = date.split("-");
-    return `${day}/${month}/${year}`;
-  };
-
-  const toggleToast = () => {
-    setToastVisible(!toastVisible);
-  };
-
-  const openToast = () => {
-    setToastVisible(true);
-  };
-
-  const closeToast = () => {
-    setToastVisible(false);
-  };
-
+  // Toast
+  // const [toastVisible, setToastVisible] = useState(false);
   const [toasts, setToasts] = useState<Toast[]>([]);
   const audioEnterNotification = useRef(new Audio("/notification-enter.mp3"));
 
@@ -201,6 +102,101 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
     }
   };
 
+  // Pagination global states
+  const [search, setSearch] = useState("");
+  const [canGoBack, setCanGoBack] = useState(true);
+  const [canGoForward, setCanGoForward] = useState(true);
+
+  // Pagination studants table
+  const [currentPagePersons, setCurrentPagePersons] = useState(1);
+  const studentsPerPage = 8;
+
+  const persons = Persons.filter(
+    (person) =>
+      person.name.toLowerCase().includes(search.toLowerCase()) ||
+      person.surname.toLowerCase().includes(search.toLowerCase()) ||
+      person.age.toLowerCase().includes(search.toLowerCase()) ||
+      person.sex.toLowerCase().includes(search.toLowerCase()) ||
+      person.status.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const indexOfLastPerson = currentPagePersons * studentsPerPage;
+  const indexOfFirstPerson = indexOfLastPerson - studentsPerPage;
+  const currentPersons = persons.slice(indexOfFirstPerson, indexOfLastPerson);
+  const totalPersonsPages = Math.ceil(persons.length / studentsPerPage);
+
+  const handlePersonsPageChange = (pageNumber: number) => {
+    setCurrentPagePersons(pageNumber);
+  };
+
+  const handleBackClickTable = () => {
+    if (!canGoBack) return;
+    handlePersonsPageChange(currentPagePersons - 1);
+  };
+
+  const handleForwardClickTable = () => {
+    if (!canGoForward) return;
+    handlePersonsPageChange(currentPagePersons + 1);
+  };
+
+  // Pagination task table
+  const [currentPageItems, setCurrentPageItems] = useState(1);
+  const tasksPerPage = 6;
+
+  const items = Context.filter(
+    (item) =>
+      item.title.toLowerCase().includes(search.toLowerCase()) ||
+      item.description.toLowerCase().includes(search.toLowerCase()) ||
+      item.date.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const indexOfLastItem = currentPageItems * tasksPerPage;
+  const indexOfFirstItem = indexOfLastItem - tasksPerPage;
+  const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
+  const totalItemsPages = Math.ceil(items.length / tasksPerPage);
+
+  const handleItemsPageChange = (pageNumber: number) => {
+    setCurrentPageItems(pageNumber);
+  };
+
+  const handleBackClickTask = () => {
+    if (!canGoBack) return;
+    handleItemsPageChange(currentPageItems - 1);
+  };
+
+  const handleForwardClickTask = () => {
+    if (!canGoForward) return;
+    handleItemsPageChange(currentPageItems + 1);
+  };
+
+  // Login Page
+  const [addClass, setAddClass] = useState(false);
+
+  const changeMode = () => {
+    setAddClass(!addClass);
+  };
+
+  // Task completed
+  const handleTaskCompleted = () => {
+    handleShowNotification("Tarefa Concluida!");
+  };
+
+  // Check your email
+  const handleSendEmail = () => {
+    handleShowNotification("Verifique o email!");
+  };
+
+  // Now log in
+  const handleRegisterUser = () => {
+    handleShowNotification("Agora faça login!");
+  };
+
+  // Set to date on Card the Task
+  const formatDate = (date: string): string => {
+    const [year, month, day] = date.split("-");
+    return `${day}/${month}/${year}`;
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -221,8 +217,6 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         setSearch,
         persons,
         currentPersons,
-        openToast,
-        closeToast,
         modalContent,
         openPopUpModal,
         setModalContent,
@@ -232,14 +226,6 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         totalPersonsPages,
         canGoBack,
         canGoForward,
-        isOpen,
-        setIsOpen,
-        toggleDropdown,
-        addClass,
-        setAddClass,
-        changeMode,
-        theme,
-        setTheme,
         handleBackClickTable,
         handleBackClickTask,
         handleForwardClickTable,
@@ -251,12 +237,12 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         handleTaskCompleted,
         handleSendEmail,
         handleRegisterUser,
-        toastVisible,
-        setToastVisible,
-        toggleToast,
         toasts,
         handleShowNotification,
         handleRemoveToast,
+        openFormModal,
+        changeMode,
+        addClass,
       }}
     >
       {children}

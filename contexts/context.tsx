@@ -1,20 +1,40 @@
 "use client";
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useRef,
+} from "react";
 import { Persons } from "@/api/datas/studants";
-import { Context } from "@/api/datas/task";
+import { Context, Task } from "@/api/datas/task";
 import PopUp from "@/components/modal/pop-up";
 import FormModal from "@/components/tasks/form";
 import { AppContextType } from "@/types/app-context";
-import { SuccessToast } from "@/components/toast/success";
+import { Toast } from "@/types/toat";
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
   children,
 }) => {
+  // Navbar
   const [navbarActive, setNavbarActive] = useState(false);
+  const toggleNavbar = () => {
+    setNavbarActive(!navbarActive);
+  };
+
+  // Modal
   const [modal, setModal] = useState(false);
-  const [toast, setToast] = useState(false);
+
+  const openModal = () => {
+    setModal(true);
+  };
+
+  const closeModal = () => {
+    setModal(false);
+  };
+
   const [currentPageItems, setCurrentPageItems] = useState(1);
   const [currentPagePersons, setCurrentPagePersons] = useState(1);
   const [search, setSearch] = useState("");
@@ -75,18 +95,6 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
     handleItemsPageChange(currentPageItems + 1);
   };
 
-  const toggleNavbar = () => {
-    setNavbarActive(!navbarActive);
-  };
-
-  const openModal = () => {
-    setModal(true);
-  };
-
-  const closeModal = () => {
-    setModal(false);
-  };
-
   const handleItemsPageChange = (pageNumber: number) => {
     setCurrentPageItems(pageNumber);
   };
@@ -95,53 +103,38 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
     setCurrentPagePersons(pageNumber);
   };
 
-  const openToast = () => {
-    closeModal();
-    setToast(true);
-  };
-
-  const closeToast = () => {
-    setToast(false);
-  };
-
   const openPopUpModal = () => {
     openModal();
     setModalContent(<PopUp />);
   };
 
-  const openFormModal = () => {
-    openModal();
-    setModalContent(<FormModal titleForm="Adicionar Tarefa" />);
-  };
-
   const handleDelete = () => {
     closeModal();
-    SuccessToast(theme, "Tarefa deletada!");
+    handleShowNotification("Tarefa Deletada!");
   };
 
   const handleUpdate = () => {
     closeModal();
-    SuccessToast(theme, "Tarefa Alterada!");
+    handleShowNotification("Tarefa Alterada!");
   };
 
   const handleCraete = () => {
     closeModal();
-    SuccessToast(theme, "Tarefa Criada!");
+    handleShowNotification("Tarefa Criada!");
   };
 
   const handleTaskCompleted = () => {
-    closeModal();
-    SuccessToast(theme, "Tarefa Concluida!");
+    handleShowNotification("Tarefa Concluida!");
   };
 
   const handleSendEmail = () => {
     closeModal();
-    SuccessToast("dark", "Verifique seu email!");
+    handleShowNotification("Verifique seu email!");
   };
 
   const handleRegisterUser = () => {
     closeModal();
-    SuccessToast("dark", "Agora faça login!");
+    handleShowNotification("Agora faça login!");
   };
 
   const toggleDropdown = () => {
@@ -159,6 +152,53 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
 
   const toggleToast = () => {
     setToastVisible(!toastVisible);
+  };
+
+  const openToast = () => {
+    setToastVisible(true);
+  };
+
+  const closeToast = () => {
+    setToastVisible(false);
+  };
+
+  const [toasts, setToasts] = useState<Toast[]>([]);
+  const audioEnterNotification = useRef(new Audio("/notification-enter.mp3"));
+
+  const handleRemoveToast = (id: number) => {
+    setToasts((prevToasts) =>
+      prevToasts.map((toast) => {
+        if (toast.id === id) {
+          if (toast.timeoutId) clearTimeout(toast.timeoutId);
+        }
+        return toast;
+      })
+    );
+
+    // Aguarda 1 segundo antes de remover o Toast da lista
+    setTimeout(() => {
+      setToasts((prevToasts) => prevToasts.filter((t) => t.id !== id));
+    }, 1000);
+  };
+
+  const handleShowNotification = (text: string) => {
+    if (toasts.length < 3) {
+      const newToast: Toast = {
+        id: Date.now(),
+        show: true,
+        description: text,
+        timeoutId: null, // Inicializa o temporizador como null
+      };
+
+      // Adiciona um novo Toast à lista
+      setToasts([...toasts, newToast]);
+      audioEnterNotification.current.play();
+
+      // Inicia um temporizador para esse Toast específico
+      newToast.timeoutId = setTimeout(() => {
+        handleRemoveToast(newToast.id); // Remove o Toast após 5 segundos
+      }, 5000);
+    }
   };
 
   return (
@@ -181,7 +221,6 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         setSearch,
         persons,
         currentPersons,
-        toast,
         openToast,
         closeToast,
         modalContent,
@@ -205,7 +244,6 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         handleBackClickTask,
         handleForwardClickTable,
         handleForwardClickTask,
-        openFormModal,
         formatDate,
         handleDelete,
         handleUpdate,
@@ -216,6 +254,9 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         toastVisible,
         setToastVisible,
         toggleToast,
+        toasts,
+        handleShowNotification,
+        handleRemoveToast,
       }}
     >
       {children}

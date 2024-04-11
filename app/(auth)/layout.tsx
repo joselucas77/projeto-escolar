@@ -1,11 +1,11 @@
 import { AppProvider } from "@/contexts/context";
 import { Providers } from "./providers";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
+import SuccessToast from "@/components/toast/success";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],
@@ -30,7 +30,7 @@ export default function LoginLayout({
           <Providers>
             <Navbar />
             {children}
-            <ToastContainer limit={3} />
+            <SuccessToast />
           </Providers>
         </AppProvider>
       </body>

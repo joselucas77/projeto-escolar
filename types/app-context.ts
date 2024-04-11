@@ -1,11 +1,11 @@
 import { Person } from "@/api/datas/studants";
 import { Task } from "@/api/datas/task";
 import { Dispatch, SetStateAction } from "react";
+import { Toast } from "./toat";
 
 export interface AppContextType {
   navbarActive: boolean;
   modal: boolean;
-  toast: boolean;
   canGoBack: boolean;
   canGoForward: boolean;
   isOpen: boolean;
@@ -22,6 +22,7 @@ export interface AppContextType {
   persons: Person[];
   currentItems: Task[];
   currentPersons: Person[];
+  toasts: Toast[];
   setSearch: Dispatch<SetStateAction<string>>;
   setAddClass: React.Dispatch<React.SetStateAction<boolean>>;
   setCanGoBack: React.Dispatch<React.SetStateAction<boolean>>;
@@ -44,7 +45,6 @@ export interface AppContextType {
   handleForwardClickTable: () => void;
   handleBackClickTask: () => void;
   handleForwardClickTask: () => void;
-  openFormModal: () => void;
   handleDelete: () => void;
   handleUpdate: () => void;
   handleCraete: () => void;
@@ -52,6 +52,8 @@ export interface AppContextType {
   handleSendEmail: () => void;
   handleRegisterUser: () => void;
   toggleToast: () => void;
+  handleShowNotification: (text: string) => void;
+  handleRemoveToast: (id: number) => void;
   formatDate: (date: string) => string;
   theme: "light" | "dark";
   setTheme: React.Dispatch<React.SetStateAction<"light" | "dark">>;

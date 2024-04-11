@@ -13,7 +13,7 @@ function FormModal({
   descriptioTask?: string;
   dateTask?: string;
 }) {
-  const { closeModal, handleUpdate, handleCraete, setTheme } = useAppContext();
+  const { closeModal, handleUpdate, handleCraete } = useAppContext();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState<string>("");
@@ -22,17 +22,12 @@ function FormModal({
   const [dateError, setDateError] = useState(false);
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
-    setTheme(
-      storedTheme === "dark" || storedTheme === "light" ? storedTheme : "light"
-    );
-
     if (titleTask && descriptioTask && dateTask) {
       setTitle(titleTask);
       setDescription(descriptioTask);
       setDate(dateTask);
     }
-  }, [titleTask, descriptioTask, dateTask, setTheme]);
+  }, [titleTask, descriptioTask, dateTask]);
 
   const validateForm = (e: { preventDefault: () => void }) => {
     e.preventDefault();

@@ -3,15 +3,7 @@ import { useEffect } from "react";
 import { useAppContext } from "@/contexts/context";
 
 const PopUp = () => {
-  const { setTheme, closeModal, handleDelete } = useAppContext();
-
-  useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
-    setTheme(
-      storedTheme === "dark" || storedTheme === "light" ? storedTheme : "light"
-    );
-  }, [setTheme]);
-
+  const { closeModal, handleDelete } = useAppContext();
   return (
     <div className="relative p-4 w-full max-w-md max-h-full">
       <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">

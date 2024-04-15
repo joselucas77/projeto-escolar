@@ -15,8 +15,8 @@ const config: Config = {
       },
       keyframes: {
         notification: {
-          "0%": { transform: "translateX(1000px)", opacity: "0" },
-          "100%": { transform: "tranlateX(0px)", opacity: "100" },
+          "0%": { transform: "translateY(-1000px)", opacity: "0" },
+          "100%": { transform: "tranlateY(0px)", opacity: "100" },
         },
       },
     },

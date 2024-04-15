@@ -4,7 +4,7 @@ import { useAppContext } from "@/contexts/context";
 const SuccessToast = () => {
   const { toasts, handleRemoveToast } = useAppContext();
   return (
-    <section className="absolute top-0 right-0 p-4 z-10">
+    <section className="absolute top-0 right-[-50%] left-[-50%] p-4 z-10">
       {toasts.map(
         (toast) =>
           toast.show && (
@@ -12,7 +12,7 @@ const SuccessToast = () => {
               open
               key={toast.id}
               id={`notification-${toast.id}`}
-              className="relative bg-blue-600 text-white flex items-center w-80 gap-4 p-0 open:p-4 mt-0 open:mt-4 shadow-lg rounded-3xl open:translate-x-0 translate-x-72 transition-all duration-700 overflow-hidden open:max-h-20 max-h-0 opacity-0 open:opacity-100 dark:bg-blue-950 animate-notification"
+              className="relative bg-blue-600 text-white flex items-center w-80 gap-4 p-0 open:p-4 mt-0 open:mt-4 shadow-lg rounded-3xl open:translate-y-0 -translate-y-72 transition-all duration-700 overflow-hidden open:max-h-20 max-h-0 opacity-0 open:opacity-100 dark:bg-blue-950 animate-notification"
             >
               <section className="flex items-center gap-4">
                 <svg

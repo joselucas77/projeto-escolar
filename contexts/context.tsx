@@ -96,9 +96,9 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
       audioEnterNotification.current.play();
 
       // Inicia um temporizador para esse Toast específico
-      newToast.timeoutId = setTimeout(() => {
-        handleRemoveToast(newToast.id); // Remove o Toast após 5 segundos
-      }, 5000);
+      // newToast.timeoutId = setTimeout(() => {
+      //   handleRemoveToast(newToast.id); // Remove o Toast após 5 segundos
+      // }, 5000);
     }
   };
 

@@ -3,13 +3,6 @@ import { useAppContext } from "@/contexts/context";
 
 const FinishTask = () => {
   const { handleTaskCompleted } = useAppContext();
-
-  // useEffect(() => {
-  //   const storedTheme = localStorage.getItem("theme");
-  //   setTheme(
-  //     storedTheme === "dark" || storedTheme === "light" ? storedTheme : "light"
-  //   );
-  // }, [setTheme]);
   return (
     <div className="flex flex-col justify-end text-center mt-3">
       <button

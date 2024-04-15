@@ -1,8 +1,27 @@
 "use client";
+import { useState, useRef, useEffect } from "react";
 import { useAppContext } from "@/contexts/context";
 
 const SuccessToast = () => {
   const { toasts, handleRemoveToast } = useAppContext();
+
+  useEffect(() => {
+    const timeouts: NodeJS.Timeout[] = [];
+    toasts.forEach((toast) => {
+      if (toast.show && toast.removing) {
+        // Garante que a animação não seja aplicada à notificação sendo removida
+        const timeoutId = setTimeout(() => {
+          handleRemoveToast(toast.id);
+        }, 5000);
+        timeouts.push(timeoutId);
+      }
+    });
+
+    return () => {
+      timeouts.forEach((timeoutId) => clearTimeout(timeoutId));
+    };
+  }, [toasts, handleRemoveToast]);
+
   return (
     <section className="absolute top-0 right-[-50%] left-[-50%] p-4 z-10">
       {toasts.map(
@@ -12,7 +31,11 @@ const SuccessToast = () => {
               open
               key={toast.id}
               id={`notification-${toast.id}`}
-              className="relative bg-blue-600 text-white flex items-center w-80 gap-4 p-0 open:p-4 mt-0 open:mt-4 shadow-lg rounded-3xl open:translate-y-0 -translate-y-72 transition-all duration-700 overflow-hidden open:max-h-20 max-h-0 opacity-0 open:opacity-100 dark:bg-blue-950 animate-notification"
+              className={`relative bg-blue-600 text-white flex items-center w-80 gap-4 p-0 open:p-4 mt-0 open:mt-4 shadow-lg rounded-3xl transition-all duration-700 overflow-hidden ${
+                toast.removing
+                  ? "open:translate-y-0 -translate-y-72 opacity-0"
+                  : "animate-notification open:max-h-20 max-h-0  open:opacity-100"
+              } dark:bg-blue-950`}
             >
               <section className="flex items-center gap-4">
                 <svg

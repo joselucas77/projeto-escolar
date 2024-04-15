@@ -21,6 +21,7 @@ export interface AppContextType {
   currentItems: Task[];
   currentPersons: Person[];
   toasts: Toast[];
+  setToasts: React.Dispatch<React.SetStateAction<Toast[]>>;
   setSearch: Dispatch<SetStateAction<string>>;
   setCanGoBack: React.Dispatch<React.SetStateAction<boolean>>;
   setCanGoForward: React.Dispatch<React.SetStateAction<boolean>>;

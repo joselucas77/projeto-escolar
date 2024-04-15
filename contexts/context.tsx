@@ -66,40 +66,45 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
   const [toasts, setToasts] = useState<Toast[]>([]);
   const audioEnterNotification = useRef(new Audio("/notification-enter.mp3"));
 
-  const handleRemoveToast = (id: number) => {
-    setToasts((prevToasts) =>
-      prevToasts.map((toast) => {
-        if (toast.id === id) {
-          if (toast.timeoutId) clearTimeout(toast.timeoutId);
-        }
-        return toast;
-      })
-    );
-
-    // Aguarda 1 segundo antes de remover o Toast da lista
-    setTimeout(() => {
-      setToasts((prevToasts) => prevToasts.filter((t) => t.id !== id));
-    }, 1000);
-  };
-
   const handleShowNotification = (text: string) => {
     if (toasts.length < 3) {
       const newToast: Toast = {
         id: Date.now(),
         show: true,
+        removing: false,
         description: text,
-        timeoutId: null, // Inicializa o temporizador como null
       };
 
-      // Adiciona um novo Toast à lista
-      setToasts([...toasts, newToast]);
+      setToasts([newToast, ...toasts]); // Adiciona nova notificação no início
       audioEnterNotification.current.play();
 
-      // Inicia um temporizador para esse Toast específico
-      // newToast.timeoutId = setTimeout(() => {
-      //   handleRemoveToast(newToast.id); // Remove o Toast após 5 segundos
-      // }, 5000);
+      // Inicia o temporizador apenas para a nova notificação
+      const timeoutId = setTimeout(() => {
+        handleRemoveToast(newToast.id);
+      }, 5000);
+
+      // Adiciona o timeoutId à notificação para limpeza posterior
+      newToast.timeoutId = timeoutId;
     }
+  };
+
+  // const handleRemoveToast = (id: number) => {
+  //   setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
+  // };
+
+  const handleRemoveToast = (id: number) => {
+    setToasts((prevToasts) =>
+      prevToasts.map((toast) => {
+        if (toast.id === id) {
+          return { ...toast, removing: true }; // Marca a notificação como removendo
+        }
+        return toast;
+      })
+    );
+
+    setTimeout(() => {
+      setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
+    }, 700); // Aguarda o término da animação antes de remover completamente a notificação
   };
 
   // Pagination global states
@@ -243,6 +248,7 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         openFormModal,
         changeMode,
         addClass,
+        setToasts,
       }}
     >
       {children}

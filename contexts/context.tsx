@@ -62,9 +62,8 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
   };
 
   // Toast
-  // const [toastVisible, setToastVisible] = useState(false);
   const [toasts, setToasts] = useState<Toast[]>([]);
-  const audioEnterNotification = useRef(new Audio("/notification-enter.mp3"));
+  const audioEnterNotification = new Audio("/notification-enter.mp3");
 
   const handleShowNotification = (text: string) => {
     if (toasts.length < 3) {
@@ -76,7 +75,7 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
       };
 
       setToasts([newToast, ...toasts]); // Adiciona nova notificação no início
-      audioEnterNotification.current.play();
+      audioEnterNotification.play();
 
       // Inicia o temporizador apenas para a nova notificação
       const timeoutId = setTimeout(() => {

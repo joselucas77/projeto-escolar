@@ -6,8 +6,8 @@ import { useAppContext } from "@/contexts/context";
 const ThemeSwitch = () => {
   const { navbarActive } = useAppContext();
   const { theme, setTheme } = useTheme();
-  const audioClickRef = useRef(new Audio("/click1.wav"));
-  const audioUncheckRef = useRef(new Audio("/click2.wav"));
+  const audioClickRef = new Audio("/click1.wav");
+  const audioUncheckRef = new Audio("/click2.wav");
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
@@ -17,9 +17,9 @@ const ThemeSwitch = () => {
     setTheme(theme === "dark" ? "light" : "dark");
 
     if (theme === "dark") {
-      audioClickRef.current.play();
+      audioClickRef.play();
     } else {
-      audioUncheckRef.current.play();
+      audioUncheckRef.play();
     }
   };
   return (

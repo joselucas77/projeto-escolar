@@ -11,7 +11,7 @@ const Student = ({ params }: StudantProps) => {
   const { navbarActive } = useAppContext();
   return (
     <div
-      className={`absolute h-screen px-3 py-3 bg-gray-300 dark:bg-gray-900 duration-500 ${
+      className={`absolute h-screen px-3 py-3 bg-gray-300 dark:bg-gray-900 duration-500 animate-mainContainer ${
         navbarActive
           ? "w-[calc(100%-240px)] left-60"
           : "w-[calc(100%-80px)] left-20"

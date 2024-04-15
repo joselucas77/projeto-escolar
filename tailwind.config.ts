@@ -12,11 +12,16 @@ const config: Config = {
     extend: {
       animation: {
         notification: "notification 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0s",
+        mainContainer: "mainContainer 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0s",
       },
       keyframes: {
         notification: {
           "0%": { transform: "translateY(-1000px)", opacity: "0" },
           "100%": { transform: "tranlateY(0px)", opacity: "100" },
+        },
+        mainContainer: {
+          "0%": { transform: "translateX(1000px)", opacity: "0" },
+          "100%": { transform: "tranlateX(0px)", opacity: "100" },
         },
       },
     },

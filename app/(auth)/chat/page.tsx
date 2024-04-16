@@ -1,4 +1,7 @@
 "use client";
+import { ChatContent } from "@/components/chat/chat-content";
+import { Detail } from "@/components/chat/detail";
+import { List } from "@/components/chat/list";
 import { useAppContext } from "@/contexts/context";
 
 export default function Chat() {
@@ -11,8 +14,10 @@ export default function Chat() {
           : "w-[calc(100%-80px)] left-20"
       }`}
     >
-      <div className="bg-white relative w-full h-full rounded-lg p-5 grid grid-cols-2 gap-x-3 text-gray-900 dark:text-white dark:bg-gray-800">
-        Chat
+      <div className="bg-white relative w-full h-full rounded-lg p-5 text-gray-900 dark:text-white dark:bg-gray-800">
+        <List />
+        <ChatContent />
+        <Detail />
       </div>
     </div>
   );

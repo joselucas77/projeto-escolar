@@ -4,7 +4,7 @@ import logo from "../../../public/log.svg";
 import register from "../../../public/register.svg";
 import { useAppContext } from "@/contexts/context";
 
-const Panel = () => {
+export const Panel = () => {
   const { addClass, changeMode } = useAppContext();
   return (
     <div className="absolute top-0 left-0 grid w-full h-full grid-cols-2">
@@ -76,5 +76,3 @@ const Panel = () => {
     </div>
   );
 };
-
-export default Panel;

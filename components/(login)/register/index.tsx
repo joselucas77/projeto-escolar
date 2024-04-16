@@ -2,7 +2,7 @@
 import { useAppContext } from "@/contexts/context";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa6";
 
-const Register = () => {
+export const Register = () => {
   const { addClass, changeMode, handleRegisterUser } = useAppContext();
 
   const Registered = (e: { preventDefault: () => void }) => {
@@ -89,5 +89,3 @@ const Register = () => {
     </div>
   );
 };
-
-export default Register;

@@ -5,7 +5,7 @@ import Pagination from "@/components/students/pagination";
 import SearchStudent from "@/components/students/search";
 import Table from "@/components/students/table";
 
-export default function Students() {
+const Students = () => {
   const { navbarActive } = useAppContext();
   return (
     <section
@@ -25,4 +25,6 @@ export default function Students() {
       </main>
     </section>
   );
-}
+};
+
+export default Students;

@@ -4,7 +4,7 @@ import { Detail } from "@/components/chat/detail";
 import { List } from "@/components/chat/list";
 import { useAppContext } from "@/contexts/context";
 
-export default function Chat() {
+const Chat = () => {
   const { navbarActive } = useAppContext();
   return (
     <div
@@ -21,4 +21,6 @@ export default function Chat() {
       </div>
     </div>
   );
-}
+};
+
+export default Chat;

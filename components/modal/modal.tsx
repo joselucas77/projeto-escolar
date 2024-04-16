@@ -4,12 +4,10 @@ interface Props {
   content: React.ReactNode;
 }
 
-function Modal({ content }: Props) {
+export const Modal = ({ content }: Props) => {
   return (
     <div className="fixed top-0 left-0 w-full h-screen flex items-center justify-center backdrop-opacity-10 backdrop-invert bg-black/30 z-[100]">
       {content}
     </div>
   );
-}
-
-export default Modal;
+};

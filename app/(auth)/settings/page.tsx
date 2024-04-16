@@ -1,7 +1,7 @@
 "use client";
 import { useAppContext } from "@/contexts/context";
 
-export default function Settings() {
+const Settings = () => {
   const { navbarActive } = useAppContext();
   return (
     <div
@@ -16,4 +16,6 @@ export default function Settings() {
       </div>
     </div>
   );
-}
+};
+
+export default Settings;

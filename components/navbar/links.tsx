@@ -6,7 +6,7 @@ import { navItems } from "./navItems";
 const Links = () => {
   const pathName = usePathname();
   return (
-    <main>
+    <>
       {navItems.map((link, index) => (
         <li
           key={index}
@@ -16,20 +16,17 @@ const Links = () => {
               : ""
           }`}
         >
-          <Link
-            href={link.path}
-            className="relative flex whitespace-nowrap group"
-          >
-            <div className="relative flex items-center justify-center min-w-16 h-16 text-[1.5em]">
+          <Link href={link.path} className="relative flex whitespace-nowrap">
+            <div className="relative flex items-center justify-center min-w-16 h-16 text-2xl text-gray-900 dark:text-gray-100">
               {link.icon}
             </div>
-            <div className="relative flex h-16 text-[1em] items-center pl-2 uppercase tracking-wider">
+            <div className="relative flex h-16 text-base font-medium items-center pl-2 uppercase tracking-wider text-gray-900  dark:text-gray-100">
               {link.title}
             </div>
           </Link>
         </li>
       ))}
-    </main>
+    </>
   );
 };
 

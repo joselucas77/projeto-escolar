@@ -16,10 +16,10 @@ const Navbar = () => {
       <ul className="relative h-screen">
         <Header />
         <Links />
-        <footer className="absolute w-full bottom-4">
+        <section className="absolute w-full bottom-4">
           <SignOut />
           <ThemeSwitch />
-        </footer>
+        </section>
       </ul>
     </nav>
   );

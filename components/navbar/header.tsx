@@ -6,21 +6,23 @@ import { IoCloseOutline, IoMenuOutline } from "react-icons/io5";
 const Header = () => {
   const { navbarActive, toggleNavbar } = useAppContext();
   return (
-    <header className="mb-12">
-      <li className="relative">
-        <div className="relative flex whitespace-nowrap">
-          <div
-            className="relative flex items-center justify-center min-w-16 h-16 duration-500 text-[2em] cursor-pointer"
-            onClick={toggleNavbar}
-          >
-            {navbarActive ? <IoCloseOutline /> : <IoMenuOutline />}
-          </div>
-          <div className="relative flex h-16 text-[1.2em] font-medium items-center pl-2 uppercase tracking-wider duration-500">
-            SIE
-          </div>
+    <li className="relative my-6">
+      <div className="relative flex whitespace-nowrap">
+        <button
+          className="relative flex items-center justify-center min-w-16 h-16 duration-500 text-gray-950 text-4xl hover:bg-gradient-to-bl hover:from-gray-200 hover:to-gray-300 rounded-full dark:hover:bg-gradient-to-bl dark:hover:from-gray-700 dark:hover:to-gray-800 dark:text-gray-300"
+          onClick={toggleNavbar}
+        >
+          {navbarActive ? (
+            <IoCloseOutline className="z-10" />
+          ) : (
+            <IoMenuOutline className="z-10" />
+          )}
+        </button>
+        <div className="relative flex h-16 text-gray-900 text-2xl font-semibold items-center pl-2 uppercase tracking-wider duration-500 dark:text-gray-300">
+          SIE
         </div>
-      </li>
-    </header>
+      </div>
+    </li>
   );
 };
 

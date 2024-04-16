@@ -9,7 +9,7 @@ const Header = () => {
     <li className="relative my-6">
       <div className="relative flex whitespace-nowrap">
         <button
-          className="relative flex items-center justify-center min-w-16 h-16 duration-500 text-gray-950 text-4xl hover:bg-gradient-to-bl hover:from-gray-200 hover:to-gray-300 rounded-full dark:hover:bg-gradient-to-bl dark:hover:from-gray-700 dark:hover:to-gray-800 dark:text-gray-300"
+          className="relative flex items-center justify-center min-w-16 h-16 duration-500 text-gray-950 text-4xl hover:bg-blue-400 rounded-full dark:hover:bg-blue-800 dark:text-gray-300"
           onClick={toggleNavbar}
         >
           {navbarActive ? (

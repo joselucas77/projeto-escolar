@@ -1,7 +1,7 @@
 "use client";
 import { useAppContext } from "@/contexts/context";
 
-export const PopUp = () => {
+const PopUp = () => {
   const { closeModal, handleDelete } = useAppContext();
   return (
     <div className="relative p-4 w-full max-w-md max-h-full">
@@ -66,3 +66,5 @@ export const PopUp = () => {
     </div>
   );
 };
+
+export default PopUp;

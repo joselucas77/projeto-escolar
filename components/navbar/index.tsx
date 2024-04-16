@@ -5,7 +5,7 @@ import Links from "./links";
 import SignOut from "./sign-out";
 import ThemeSwitch from "./theme-switch";
 
-export const Navbar = () => {
+const Navbar = () => {
   const { navbarActive } = useAppContext();
   return (
     <nav
@@ -24,3 +24,5 @@ export const Navbar = () => {
     </nav>
   );
 };
+
+export default Navbar;

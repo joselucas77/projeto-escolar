@@ -1,7 +1,7 @@
 "use client";
-import { ChatContent } from "@/components/chat/chat-content";
-import { Detail } from "@/components/chat/detail";
-import { List } from "@/components/chat/list";
+import ChatContent from "@/components/chat/chat-content";
+import Detail from "@/components/chat/detail";
+import List from "@/components/chat/list";
 import { useAppContext } from "@/contexts/context";
 
 const Chat = () => {

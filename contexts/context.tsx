@@ -10,8 +10,9 @@ import { Persons } from "@/api/datas/studants";
 import { Context, Task } from "@/api/datas/task";
 import PopUp from "@/components/modal/pop-up";
 import { AppContextType } from "@/types/app-context";
-import { Toast } from "@/types/toat";
+import { Toast } from "@/types/toast";
 import FormModal from "@/components/tasks/form";
+import { ChatItems } from "@/api/datas/chat";
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -87,10 +88,6 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
     }
   };
 
-  // const handleRemoveToast = (id: number) => {
-  //   setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
-  // };
-
   const handleRemoveToast = (id: number) => {
     setToasts((prevToasts) =>
       prevToasts.map((toast) => {
@@ -110,6 +107,13 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
   const [search, setSearch] = useState("");
   const [canGoBack, setCanGoBack] = useState(true);
   const [canGoForward, setCanGoForward] = useState(true);
+
+  //filter chat
+  const chat = ChatItems.filter(
+    (chat) =>
+      chat.name.toLowerCase().includes(search.toLowerCase()) ||
+      chat.mensage.toLowerCase().includes(search.toLowerCase())
+  );
 
   // Pagination studants table
   const [currentPagePersons, setCurrentPagePersons] = useState(1);
@@ -248,6 +252,7 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         changeMode,
         addClass,
         setToasts,
+        chat,
       }}
     >
       {children}

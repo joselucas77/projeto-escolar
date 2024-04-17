@@ -1,7 +1,8 @@
 import { Person } from "@/api/datas/studants";
 import { Task } from "@/api/datas/task";
 import { Dispatch, SetStateAction } from "react";
-import { Toast } from "./toat";
+import { Toast } from "./toast";
+import { Chat } from "@/api/datas/chat";
 
 export interface AppContextType {
   navbarActive: boolean;
@@ -21,6 +22,7 @@ export interface AppContextType {
   currentItems: Task[];
   currentPersons: Person[];
   toasts: Toast[];
+  chat: Chat[];
   setToasts: React.Dispatch<React.SetStateAction<Toast[]>>;
   setSearch: Dispatch<SetStateAction<string>>;
   setCanGoBack: React.Dispatch<React.SetStateAction<boolean>>;

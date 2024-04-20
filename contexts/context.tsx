@@ -1,18 +1,13 @@
 "use client";
-import React, {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-  useRef,
-} from "react";
+import React, { createContext, useContext, useState, ReactNode } from "react";
 import { Persons } from "@/api/datas/studants";
-import { Context, Task } from "@/api/datas/task";
+import { Context } from "@/api/datas/task";
 import PopUp from "@/components/modal/pop-up";
 import { AppContextType } from "@/types/app-context";
 import { Toast } from "@/types/toast";
 import FormModal from "@/components/tasks/form";
 import { ChatItems } from "@/api/datas/chat";
+import { EmojiClickData, Theme } from "emoji-picker-react";
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -205,6 +200,17 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
     return `${day}/${month}/${year}`;
   };
 
+  // Settings for input to chat component
+  const [open, setOpen] = useState(false);
+  const [text, setText] = useState("");
+  const [theme, setTheme] = useState(Theme.LIGHT);
+  const [addMode, setAddMode] = useState(false);
+
+  const handleEmoji = (e: EmojiClickData) => {
+    setText((prev) => prev + e.emoji);
+    setOpen(false);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -253,6 +259,15 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         addClass,
         setToasts,
         chat,
+        open,
+        setOpen,
+        text,
+        setText,
+        theme,
+        setTheme,
+        handleEmoji,
+        addMode,
+        setAddMode,
       }}
     >
       {children}

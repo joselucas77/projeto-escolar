@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+"use client";
+import React from "react";
 import { IoAdd, IoRemove } from "react-icons/io5";
 import { useAppContext } from "@/contexts/context";
 
 const ChatList = () => {
-  const { navbarActive, search, setSearch, chat } = useAppContext();
-  const [addMode, setAddMode] = useState(false);
+  const { navbarActive, search, setSearch, chat, addMode, setAddMode } =
+    useAppContext();
   return (
-    <div className="flex flex-col overflow-scroll">
-      <div className="flex flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between py-4 px-1 mt-2">
+    <div className="flex flex-col p-1 overflow-scroll">
+      <div className="flex flex-row flex-wrap space-y-4 gap-2 sm:space-y-0 items-center justify-between py-4 px-1">
         <div
           className={`transition-all duration-500 ${
             navbarActive ? "w-48" : "w-60"
@@ -45,7 +46,7 @@ const ChatList = () => {
           </div>
         </div>
         <div
-          className="flex justify-center items-center text-2xl text-gray-500 bg-gray-50 w-8 h-8 rounded-xl cursor-pointer dark:text-gray-400 dark:bg-gray-700"
+          className="flex justify-center items-center text-2xl text-gray-500 bg-gray-100 w-8 h-8 rounded-full cursor-pointer shadow-inner border-2 border-solid border-gray-50 dark:border-gray-600 dark:text-gray-400 dark:bg-gray-700"
           onClick={() => setAddMode((prev) => !prev)}
         >
           {addMode ? <IoRemove /> : <IoAdd />}
@@ -54,9 +55,9 @@ const ChatList = () => {
       {chat.map((item, index) => (
         <div
           key={index}
-          className="flex items-center gap-5 p-5 cursor-pointer border-b border-solid border-gray-300 dark:border-gray-900"
+          className="flex items-center gap-3 py-5 cursor-pointer border-b border-solid border-gray-300 dark:border-gray-900"
         >
-          <div className="relative inline-flex items-center justify-center w-12 h-12 ring-2 p-1 ring-gray-100 overflow-hidden bg-gray-200 rounded-full dark:ring-gray-500 dark:bg-gray-600">
+          <div className="relative inline-flex items-center justify-center w-12 h-12 ring-2 p-1 ring-gray-200 overflow-hidden bg-gray-300 rounded-full dark:ring-gray-700 dark:bg-gray-900">
             <span className="font-medium text-gray-600 dark:text-gray-300">
               {item.profile}
             </span>

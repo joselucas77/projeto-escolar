@@ -3,13 +3,17 @@ import { Task } from "@/api/datas/task";
 import { Dispatch, SetStateAction } from "react";
 import { Toast } from "./toast";
 import { Chat } from "@/api/datas/chat";
+import { EmojiClickData, Theme } from "emoji-picker-react";
 
 export interface AppContextType {
+  text: string;
   navbarActive: boolean;
   modal: boolean;
   canGoBack: boolean;
   canGoForward: boolean;
   addClass: boolean;
+  open: boolean;
+  addMode: boolean;
   currentPageItems: number;
   currentPagePersons: number;
   studentsPerPage: number;
@@ -23,14 +27,20 @@ export interface AppContextType {
   currentPersons: Person[];
   toasts: Toast[];
   chat: Chat[];
+  theme: Theme;
+  setTheme: React.Dispatch<React.SetStateAction<Theme>>;
   setToasts: React.Dispatch<React.SetStateAction<Toast[]>>;
   setSearch: Dispatch<SetStateAction<string>>;
   setCanGoBack: React.Dispatch<React.SetStateAction<boolean>>;
   setCanGoForward: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setAddMode: React.Dispatch<React.SetStateAction<boolean>>;
+  setText: React.Dispatch<React.SetStateAction<string>>;
   modalContent: React.ReactNode;
   setModalContent: React.Dispatch<React.SetStateAction<React.ReactNode>>;
   handleItemsPageChange: (pageNumber: number) => void;
   handlePersonsPageChange: (pageNumber: number) => void;
+  handleEmoji: (e: EmojiClickData) => void;
   openPopUpModal: () => void;
   toggleNavbar: () => void;
   openModal: () => void;

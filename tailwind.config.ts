@@ -9,6 +9,9 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily: {
+      sans: ["Helvetica", "Arial", "sans-serif"],
+    },
     extend: {
       animation: {
         notification: "notification 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0s",

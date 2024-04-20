@@ -3,7 +3,7 @@ import { useAppContext } from "@/contexts/context";
 import Link from "next/link";
 import { FaLock, FaEnvelope } from "react-icons/fa6";
 
-export const Login = () => {
+const Login = () => {
   const { addClass } = useAppContext();
   return (
     <div
@@ -92,3 +92,5 @@ export const Login = () => {
     </div>
   );
 };
+
+export default Login;

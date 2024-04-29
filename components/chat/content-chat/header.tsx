@@ -3,18 +3,15 @@ import { IoInformationCircleOutline, IoSearchOutline } from "react-icons/io5";
 
 export const Header = () => {
   return (
-    <div className="flex items-center justify-between p-2 border-b border-solid border-gray-300 dark:border-gray-900">
+    <div className="flex items-center justify-between pb-2 px-2 border-b border-solid border-gray-300 dark:border-gray-900">
       <div className="flex items-center gap-5">
-        <div className="relative inline-flex items-center justify-center w-14 h-14 ring-2 p-1 ring-gray-200 overflow-hidden bg-gray-300 rounded-full dark:ring-gray-700 dark:bg-gray-900 cursor-pointer">
+        <div className="relative inline-flex items-center justify-center w-12 h-12 ring-2 p-1 ring-gray-200 overflow-hidden bg-gray-300 rounded-full dark:ring-gray-700 dark:bg-gray-900 cursor-pointer">
           <span className="font-medium text-gray-600 dark:text-gray-300">
             AS
           </span>
         </div>
         <div className="flex flex-col gap-1">
           <span className="text-lg font-bold">Ana Silva</span>
-          <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-            Lorem ipsum dolor sit.
-          </p>
         </div>
       </div>
       <div className="flex gap-5">

@@ -1,4 +1,5 @@
-import localImage from "@/public/chat-img.jpg";
+import image1 from "@/public/chat1.jpg";
+import image2 from "@/public/chat2.jpg";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 export interface Message {
@@ -14,7 +15,7 @@ export const MessageItems: Message[] = [
   {
     profile: "AS",
     myMessenger: false,
-    img: localImage,
+    img: image1,
     text: "",
     time: "11:46",
   },
@@ -43,7 +44,7 @@ export const MessageItems: Message[] = [
   },
   {
     myMessenger: true,
-    img: localImage,
+    img: image2,
     text: "debitis corrupti voluptatum quis? Magnam dolore tempora temporibus ut perferendis. Iste soluta adipisci culpa ipsam?",
     time: "11:52",
   },

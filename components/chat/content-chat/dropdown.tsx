@@ -28,7 +28,7 @@ const Dropdown = () => {
           id="dropdownMenuIconButton"
           data-dropdown-toggle="dropdownDots"
           data-dropdown-placement="bottom-start"
-          className=" p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 dark:text-white dark:bg-gray-900 dark:hover:bg-gray-800"
+          className="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg inline-flex self-center text-sm p-2 text-center dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
           onClick={() => setOpenDrop(!openDrop)}
           type="button"
         >
@@ -50,32 +50,23 @@ const Dropdown = () => {
         }  bg-white divide-y self-center max-h-32 divide-gray-100 rounded-lg shadow w-20 dark:bg-gray-700 dark:divide-gray-600`}
       >
         <ul
-          className="py-1 text-sm text-gray-700 dark:text-gray-200"
+          className="text-sm text-gray-700 dark:text-gray-200"
           aria-labelledby="dropdownMenuIconButton"
         >
           <li>
-            <a
-              href="#"
-              className="block px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-            >
+            <button className="flex justify-start w-full px-2 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
               Copiar
-            </a>
+            </button>
           </li>
           <li>
-            <a
-              href="#"
-              className="block px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-            >
+            <button className="flex justify-start w-full px-2 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
               Editar
-            </a>
+            </button>
           </li>
           <li>
-            <a
-              href="#"
-              className="block px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-            >
+            <button className="flex justify-start w-full px-2 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
               Deletar
-            </a>
+            </button>
           </li>
         </ul>
       </div>

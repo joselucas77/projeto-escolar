@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useAppContext } from "@/contexts/context";
-import { IoEllipsisHorizontalOutline, IoCreateOutline } from "react-icons/io5";
+import { IoCreateOutline } from "react-icons/io5";
 
 const UserInfo = () => {
   const { navbarActive } = useAppContext();
@@ -22,7 +22,6 @@ const UserInfo = () => {
         </h2>
       </div>
       <div className="flex gap-5 px-2">
-        <IoEllipsisHorizontalOutline className="w-5 h-5 cursor-pointer" />
         <IoCreateOutline className="w-5 h-5 cursor-pointer" />
       </div>
     </div>

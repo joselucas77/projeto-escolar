@@ -21,22 +21,22 @@ button {
 }
 
 body::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
 }
 
 body::-webkit-scrollbar-track {
-  background: #287bff;
+  background: #1A355B;
 }
 
 body::-webkit-scrollbar-thumb {
   background-color: white;
   border-radius: 20px;
-  border: 3px solid #287bff;
+  border: 3px solid #1A355B;
 }
 
 div::-webkit-scrollbar,
 main::-webkit-scrollbar {
-  width: 2px;
+  width: 1px;
 }
 
 div::-webkit-scrollbar-track,
@@ -48,6 +48,6 @@ main::-webkit-scrollbar-corner {
 
 div::-webkit-scrollbar-thumb,
 main::-webkit-scrollbar-thumb {
-  background-color: #030712;
+  background-color: #4b5563;
   border-radius: 20px;
 }

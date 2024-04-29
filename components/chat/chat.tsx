@@ -6,7 +6,7 @@ import { Footer } from "./content-chat/footer";
 
 const ChatContent = () => {
   return (
-    <div className="flex flex-col basis-1/2 border-x border-solid p-1 border-gray-300 dark:border-gray-900 h-full">
+    <div className="flex flex-col basis-[55%] border-x border-solid p-1 border-gray-300 dark:border-gray-900 h-full">
       <Header />
       <Main />
       <Footer />

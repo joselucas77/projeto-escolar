@@ -7,6 +7,7 @@ import { EmojiClickData, Theme } from "emoji-picker-react";
 
 export interface AppContextType {
   text: string;
+  filterOption: string;
   navbarActive: boolean;
   modal: boolean;
   canGoBack: boolean;
@@ -20,7 +21,9 @@ export interface AppContextType {
   tasksPerPage: number;
   totalItemsPages: number;
   totalPersonsPages: number;
-  search: string;
+  searchStudent: string;
+  searchTask: string;
+  searchChat: string;
   items: Task[];
   persons: Person[];
   currentItems: Task[];
@@ -30,7 +33,10 @@ export interface AppContextType {
   theme: Theme;
   setTheme: React.Dispatch<React.SetStateAction<Theme>>;
   setToasts: React.Dispatch<React.SetStateAction<Toast[]>>;
-  setSearch: Dispatch<SetStateAction<string>>;
+  setSearchStudent: Dispatch<SetStateAction<string>>;
+  setSearchTask: Dispatch<SetStateAction<string>>;
+  setSearchChat: Dispatch<SetStateAction<string>>;
+  setFilterOption: Dispatch<SetStateAction<string>>;
   setCanGoBack: React.Dispatch<React.SetStateAction<boolean>>;
   setCanGoForward: React.Dispatch<React.SetStateAction<boolean>>;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -57,6 +63,7 @@ export interface AppContextType {
   handleRegisterUser: () => void;
   openFormModal: () => void;
   changeMode: () => void;
+  openForm: () => void;
   handleShowNotification: (text: string) => void;
   handleRemoveToast: (id: number) => void;
   formatDate: (date: string) => string;

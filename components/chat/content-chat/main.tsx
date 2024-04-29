@@ -5,7 +5,7 @@ import Dropdown from "./dropdown";
 
 export const Main = () => {
   return (
-    <div className="flex flex-col p-5 overflow-scroll gap-5">
+    <div className="flex flex-col p-5 overflow-scroll gap-5 shadow-inner">
       {MessageItems.map((msg, index) => (
         <div
           key={index}
@@ -37,7 +37,7 @@ export const Main = () => {
                         className="w-5 h-5 flex-shrink-0"
                         viewBox="0 0 20 21"
                       >
-                        <g clip-path="url(#clip0_3173_1381)">
+                        <g clipPath="url(#clip0_3173_1381)">
                           <path
                             fill="#E2E5E7"
                             d="M5.024.5c-.688 0-1.25.563-1.25 1.25v17.5c0 .688.562 1.25 1.25 1.25h12.5c.687 0 1.25-.563 1.25-1.25V5.5l-5-5h-8.75z"
@@ -135,9 +135,9 @@ export const Main = () => {
                       >
                         <path
                           stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
                           d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"
                         />
                       </svg>

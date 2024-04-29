@@ -2,16 +2,17 @@
 import React from "react";
 import { IoAdd, IoRemove } from "react-icons/io5";
 import { useAppContext } from "@/contexts/context";
+import AddNewChat from "../add-chat/form";
 
 const ChatList = () => {
-  const { navbarActive, search, setSearch, chat, addMode, setAddMode } =
+  const { navbarActive, searchChat, setSearchChat, chat, addMode, setAddMode } =
     useAppContext();
   return (
-    <div className="flex flex-col p-1 overflow-scroll">
+    <div className="flex flex-col p-1 overflow-scroll shadow-inner">
       <div className="flex flex-row flex-wrap space-y-4 gap-2 sm:space-y-0 items-center justify-between py-4 px-1">
         <div
           className={`transition-all duration-500 ${
-            navbarActive ? "w-48" : "w-60"
+            navbarActive ? "w-36" : "w-44"
           }`}
         >
           <div className="relative">
@@ -39,8 +40,8 @@ const ChatList = () => {
               type="text"
               id="table-search"
               className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              value={searchChat}
+              onChange={(e) => setSearchChat(e.target.value)}
               placeholder="Pesquise"
             />
           </div>
@@ -68,6 +69,7 @@ const ChatList = () => {
           </div>
         </div>
       ))}
+      {addMode && <AddNewChat />}
     </div>
   );
 };

@@ -25,7 +25,7 @@ export const Footer = () => {
     showPreview: false,
   };
   return (
-    <div className="flex items-center justify-between p-5 mt-auto gap-2 border-t border-solid border-gray-300 dark:border-gray-900">
+    <div className="flex items-center justify-between pt-5 px-5 mt-auto gap-2 border-t border-solid border-gray-300 dark:border-gray-900">
       <div className="relative w-full">
         <div className="absolute inset-y-0 start-0 flex items-center gap-2 ps-3 cursor-pointer">
           <MdEmojiEmotions

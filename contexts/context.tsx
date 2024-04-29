@@ -8,6 +8,7 @@ import { Toast } from "@/types/toast";
 import FormModal from "@/components/tasks/form";
 import { ChatItems } from "@/api/datas/chat";
 import { EmojiClickData, Theme } from "emoji-picker-react";
+import AddNewChat from "@/components/chat/add-chat/form";
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -35,6 +36,11 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
   const openFormModal = () => {
     openModal();
     setModalContent(<FormModal titleForm="Adicionar Tarefa" />);
+  };
+
+  const openForm = () => {
+    openModal();
+    setModalContent(<AddNewChat />);
   };
 
   const openPopUpModal = () => {
@@ -99,29 +105,69 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
   };
 
   // Pagination global states
-  const [search, setSearch] = useState("");
+  const [searchStudent, setSearchStudent] = useState("");
+  const [searchTask, setSearchTask] = useState("");
+  const [searchChat, setSearchChat] = useState("");
   const [canGoBack, setCanGoBack] = useState(true);
   const [canGoForward, setCanGoForward] = useState(true);
 
   //filter chat
   const chat = ChatItems.filter(
     (chat) =>
-      chat.name.toLowerCase().includes(search.toLowerCase()) ||
-      chat.mensage.toLowerCase().includes(search.toLowerCase())
+      chat.name.toLowerCase().includes(searchChat.toLowerCase()) ||
+      chat.mensage.toLowerCase().includes(searchChat.toLowerCase())
   );
 
   // Pagination studants table
   const [currentPagePersons, setCurrentPagePersons] = useState(1);
-  const studentsPerPage = 8;
+  const studentsPerPage = 10;
+  const [filterOption, setFilterOption] = useState("all");
 
-  const persons = Persons.filter(
-    (person) =>
-      person.name.toLowerCase().includes(search.toLowerCase()) ||
-      person.surname.toLowerCase().includes(search.toLowerCase()) ||
-      person.age.toLowerCase().includes(search.toLowerCase()) ||
-      person.sex.toLowerCase().includes(search.toLowerCase()) ||
-      person.status.toLowerCase().includes(search.toLowerCase())
-  );
+  // Função para filtrar pessoas com base na opção selecionada e no termo de pesquisa
+  const persons = Persons.filter((person) => {
+    const fullName = `${person.name} ${person.surname}`.toLowerCase();
+    const age = person.age.toString().toLowerCase();
+    const search = searchStudent.toLowerCase();
+
+    if (filterOption === "all") {
+      return (
+        fullName.includes(search) ||
+        age.includes(search) ||
+        person.sex.toLowerCase().includes(search) ||
+        person.status.toLowerCase().includes(search)
+      );
+    } else if (filterOption === "mas") {
+      return (
+        (person.sex.toLowerCase() === "masculino" &&
+          fullName.includes(search)) ||
+        (person.sex.toLowerCase() === "masculino" && age.includes(search))
+      );
+    } else if (filterOption === "fem") {
+      return (
+        (person.sex.toLowerCase() === "feminino" &&
+          fullName.includes(search)) ||
+        (person.sex.toLowerCase() === "feminino" && age.includes(search))
+      );
+    } else if (filterOption === "apr") {
+      return (
+        (person.status.toLowerCase() === "aprovado" &&
+          fullName.includes(search)) ||
+        (person.status.toLowerCase() === "aprovado" && age.includes(search))
+      );
+    } else if (filterOption === "pen") {
+      return (
+        (person.status.toLowerCase() === "pendente" &&
+          fullName.includes(search)) ||
+        (person.status.toLowerCase() === "pendente" && age.includes(search))
+      );
+    } else if (filterOption === "rep") {
+      return (
+        (person.status.toLowerCase() === "reprovado" &&
+          fullName.includes(search)) ||
+        (person.status.toLowerCase() === "reprovado" && age.includes(search))
+      );
+    }
+  });
 
   const indexOfLastPerson = currentPagePersons * studentsPerPage;
   const indexOfFirstPerson = indexOfLastPerson - studentsPerPage;
@@ -148,9 +194,9 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
 
   const items = Context.filter(
     (item) =>
-      item.title.toLowerCase().includes(search.toLowerCase()) ||
-      item.description.toLowerCase().includes(search.toLowerCase()) ||
-      item.date.toLowerCase().includes(search.toLowerCase())
+      item.title.toLowerCase().includes(searchTask.toLowerCase()) ||
+      item.description.toLowerCase().includes(searchTask.toLowerCase()) ||
+      item.date.toLowerCase().includes(searchTask.toLowerCase())
   );
 
   const indexOfLastItem = currentPageItems * tasksPerPage;
@@ -227,8 +273,6 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         tasksPerPage,
         items,
         currentItems,
-        search,
-        setSearch,
         persons,
         currentPersons,
         modalContent,
@@ -268,6 +312,15 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         handleEmoji,
         addMode,
         setAddMode,
+        searchChat,
+        setSearchChat,
+        searchStudent,
+        setSearchStudent,
+        searchTask,
+        setSearchTask,
+        openForm,
+        filterOption,
+        setFilterOption,
       }}
     >
       {children}

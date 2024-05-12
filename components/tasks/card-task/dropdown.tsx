@@ -45,7 +45,7 @@ const Dropdown = ({ title, description, date }: Task) => {
   return (
     <div className="absolute top-8 right-4 -translate-y-2/4" ref={dropdownRef}>
       <button
-        className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-gray-200 rounded-lg hover:bg-white focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+        className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 dark:text-white dark:bg-gray-700 dark:hover:bg-gray-600"
         type="button"
         onClick={toggleDropdown}
       >
@@ -62,12 +62,12 @@ const Dropdown = ({ title, description, date }: Task) => {
       <div
         className={`${
           isOpen ? "block" : "hidden"
-        } absolute top-10 left-0 mt-2 w-24 bg-white rounded-lg shadow-lg dark:bg-gray-600`}
+        } absolute top-10 left-0 mt-2 w-24 bg-white rounded-lg shadow-lg dark:bg-gray-700`}
       >
-        <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+        <ul className="py-2 text-sm text-gray-900 dark:text-gray-50">
           <li>
             <button
-              className="block px-4 py-2 hover:text-gray-900 dark:hover:text-white"
+              className="block w-full py-2 hover:bg-gray-100 dark:hover:bg-gray-600"
               onClick={openFormModal}
             >
               Editar
@@ -75,7 +75,7 @@ const Dropdown = ({ title, description, date }: Task) => {
           </li>
           <li>
             <button
-              className="block px-4 py-2 hover:text-gray-900 dark:hover:text-white"
+              className="block w-full py-2 hover:bg-gray-100 dark:hover:bg-gray-600"
               onClick={openPopUpModal}
             >
               Deletar

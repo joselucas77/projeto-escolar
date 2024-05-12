@@ -9,7 +9,7 @@ const Header = () => {
     <li className="relative my-6">
       <div className="relative flex whitespace-nowrap">
         <button
-          className="relative flex items-center justify-center min-w-16 h-16 duration-500 text-gray-950 text-4xl hover:bg-blue-400 rounded-full dark:hover:bg-blue-800 dark:text-gray-300"
+          className="relative flex items-center justify-center min-w-16 h-16 text-gray-950 text-4xl rounded-full dark:text-gray-300"
           onClick={toggleNavbar}
         >
           {navbarActive ? (
@@ -18,7 +18,7 @@ const Header = () => {
             <IoMenuOutline className="z-10" />
           )}
         </button>
-        <div className="relative flex h-16 text-gray-900 text-2xl font-semibold items-center pl-2 uppercase tracking-wider duration-500 dark:text-gray-300">
+        <div className="relative flex h-16 text-gray-900 text-2xl font-semibold items-center pl-2 uppercase tracking-wider dark:text-gray-300">
           SIE
         </div>
       </div>

@@ -11,7 +11,7 @@ const CardTasks = () => {
       {currentItems.map((item) => (
         <div
           key={item.id}
-          className="py-5 px-4 rounded-2xl bg-gray-200 dark:bg-gray-700 h-60 w-80 flex flex-col gap-4 relative"
+          className="py-5 px-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-700 dark:border-gray-600 h-60 w-80 flex flex-col gap-4 relative"
         >
           <Content
             title={item.title}

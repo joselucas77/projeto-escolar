@@ -16,7 +16,7 @@ const Filter = () => {
         onChange={handleFilterChange}
       >
         <option selected value="all">
-          Filtro
+          TODOS
         </option>
         <option value="mas">MASCULINO</option>
         <option value="fem">FEMININO</option>

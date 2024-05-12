@@ -97,7 +97,7 @@ function FormModal({
           <input
             type="text"
             id="title"
-            className="w-full p-4 text-sm resize-none bg-gray-50 text-gray-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="w-full p-4 text-sm resize-none bg-gray-50 text-gray-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Atividade de Matemática"
             value={title}
             onChange={(e) => {
@@ -118,7 +118,7 @@ function FormModal({
           <textarea
             name="description"
             id="description"
-            className="w-full p-4 text-sm resize-none bg-gray-50 text-gray-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="w-full p-4 text-sm resize-none bg-gray-50 text-gray-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500"
             rows={4}
             placeholder="resolver os exercícios da página 34 do livro I"
             value={description}
@@ -142,7 +142,7 @@ function FormModal({
             type="date"
             name="date"
             id="date"
-            className="w-full p-4 text-sm resize-none bg-gray-50 text-gray-800 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 cursor-text dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="w-full p-4 text-sm resize-none bg-gray-50 text-gray-400 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 cursor-text dark:bg-gray-600 dark:border-gray-500 dark:text-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500"
             value={date || ""}
             onChange={handleDateChange}
           />

@@ -31,7 +31,7 @@ const StatusStudent = ({ status }: StatusProps) => {
     }
   };
 
-  return <td className="px-6 py-2 uppercase">{statusText()}</td>;
+  return <td className="uppercase">{statusText()}</td>;
 };
 
 export default StatusStudent;

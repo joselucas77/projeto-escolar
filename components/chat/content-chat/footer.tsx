@@ -46,7 +46,7 @@ export const Footer = () => {
         <input
           type="text"
           id="search"
-          className="block w-full p-4 ps-12 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="block w-full p-4 ps-12 text-sm text-gray-900 border border-gray-300 rounded-full bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Mensagem"
           value={text}
           onChange={(e) => setText(e.target.value)}
@@ -56,7 +56,7 @@ export const Footer = () => {
           <IoImage className="w-6 h-6 text-gray-500 dark:text-gray-400 cursor-pointer" />
         </div>
       </div>
-      <button className="bg-gray-100 rounded-full p-4 shadow-inner border-2 border-solid border-gray-50 dark:border-gray-600 dark:bg-gray-700">
+      <button className="bg-gray-100 rounded-full ml-2 p-4 shadow-inner border-2 border-solid border-gray-50 dark:border-gray-600 dark:bg-gray-700">
         <IoSendSharp />
       </button>
     </div>

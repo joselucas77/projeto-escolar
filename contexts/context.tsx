@@ -6,7 +6,7 @@ import PopUp from "@/components/modal/pop-up";
 import { AppContextType } from "@/types/app-context";
 import { Toast } from "@/types/toast";
 import FormModal from "@/components/tasks/form";
-import { ChatItems } from "@/api/datas/chat";
+import { ChatItems, ProfileItems } from "@/api/datas/chat";
 import { EmojiClickData, Theme } from "emoji-picker-react";
 import AddNewChat from "@/components/chat/add-chat/form";
 
@@ -19,6 +19,12 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
   const [navbarActive, setNavbarActive] = useState(false);
   const toggleNavbar = () => {
     setNavbarActive(!navbarActive);
+  };
+
+  // Details from Chat
+  const [detailsActive, setDetailsActive] = useState(false);
+  const toggleChatDetails = () => {
+    setDetailsActive(!detailsActive);
   };
 
   // Modal
@@ -108,15 +114,35 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
   const [searchStudent, setSearchStudent] = useState("");
   const [searchTask, setSearchTask] = useState("");
   const [searchChat, setSearchChat] = useState("");
+  const [searchProfile, setSearchProfile] = useState("");
   const [canGoBack, setCanGoBack] = useState(true);
   const [canGoForward, setCanGoForward] = useState(true);
 
   //filter chat
-  const chat = ChatItems.filter(
+  const chat = ProfileItems.filter(
     (chat) =>
       chat.name.toLowerCase().includes(searchChat.toLowerCase()) ||
       chat.mensage.toLowerCase().includes(searchChat.toLowerCase())
   );
+
+  const newChat = ChatItems.filter((chat) =>
+    chat.name.toLowerCase().includes(searchProfile.toLowerCase())
+  );
+
+  const [alertToast, setAlertToast] = useState(false);
+
+  const addChat = (index: number) => {
+    console.log(index);
+    const chatToAdd = newChat[index];
+    if (!ProfileItems.some((item) => item.profile === chatToAdd.profile)) {
+      setAlertToast(false);
+      ProfileItems.push(chatToAdd);
+      handleShowNotification("Perfil adicionado!");
+    } else {
+      setAlertToast(true);
+      handleShowNotification("Já foi adicionado!");
+    }
+  };
 
   // Pagination studants table
   const [currentPagePersons, setCurrentPagePersons] = useState(1);
@@ -303,6 +329,7 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         addClass,
         setToasts,
         chat,
+        newChat,
         open,
         setOpen,
         text,
@@ -321,6 +348,14 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         openForm,
         filterOption,
         setFilterOption,
+        detailsActive,
+        setDetailsActive,
+        toggleChatDetails,
+        searchProfile,
+        setSearchProfile,
+        addChat,
+        alertToast,
+        setAlertToast,
       }}
     >
       {children}

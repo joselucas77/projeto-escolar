@@ -56,3 +56,5 @@ export const ChatItems: Chat[] = [
     mensage: "Olá 🖐",
   },
 ];
+
+export const ProfileItems: Chat[] = [];

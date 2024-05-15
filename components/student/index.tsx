@@ -4,6 +4,7 @@ import ProfileCard from "./profileCard";
 import ScoreCard from "./scoreCard";
 import { getStudentById } from "@/api/datas/studants";
 import Link from "next/link";
+import { IoArrowUndo } from "react-icons/io5";
 
 interface StudantProps {
   params: { id: string };
@@ -20,12 +21,13 @@ const Index = ({ params }: StudantProps) => {
   return (
     <div className="mx-auto max-w-screen-xl">
       <div className="grid grid-cols-2 gap-5">
-        <Link href={"/students"} className="absolute z-50 left-[-2%] top-[73%]">
+        <Link href={"/students"} className="absolute z-50 left-[-2%] top-[28%]">
           <button
             type="button"
-            className="text-gray-900 bg-gray-300 hover:bg-gray-900 hover:text-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center rotate-180 inline-flex items-center me-2 dark:text-gray-100 dark:hover:text-gray-900 dark:bg-gray-900 dark:hover:bg-gray-100 dark:focus:ring-blue-800"
+            className="text-gray-900 bg-gray-300 hover:bg-gray-900 hover:text-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:text-gray-100 dark:hover:text-gray-900 dark:bg-gray-900 dark:hover:bg-gray-100 dark:focus:ring-blue-800"
           >
-            <svg
+            <IoArrowUndo />
+            {/* <svg
               className="w-4 h-4"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +41,7 @@ const Index = ({ params }: StudantProps) => {
                 stroke-width="2"
                 d="M1 5h12m0 0L9 1m4 4L9 9"
               />
-            </svg>
+            </svg> */}
           </button>
         </Link>
         <ProfileCard

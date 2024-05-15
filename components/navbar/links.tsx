@@ -17,6 +17,11 @@ const Links = () => {
           }`}
         >
           <Link href={link.path} className="relative flex whitespace-nowrap">
+            {link.title === "Chat" && (
+              <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-[0.15em] -end-1 dark:border-gray-900">
+                1
+              </div>
+            )}
             <div className="relative flex items-center justify-center min-w-16 h-16 text-2xl text-gray-900 dark:text-gray-100">
               {link.icon}
             </div>

@@ -1,6 +1,5 @@
 "use client";
-import React from "react";
-import { IoAdd, IoRemove } from "react-icons/io5";
+import { IoAdd } from "react-icons/io5";
 import { useAppContext } from "@/contexts/context";
 import AddNewChat from "../add-chat/form";
 
@@ -12,7 +11,7 @@ const ChatList = () => {
       <div className="flex flex-row flex-wrap space-y-4 gap-2 sm:space-y-0 items-center justify-between py-4 px-1">
         <div
           className={`transition-all duration-500 ${
-            navbarActive ? "w-36" : "w-44"
+            navbarActive ? "w-44" : "w-52"
           }`}
         >
           <div className="relative">
@@ -47,10 +46,10 @@ const ChatList = () => {
           </div>
         </div>
         <div
-          className="flex justify-center items-center text-2xl text-gray-500 bg-gray-100 w-8 h-8 rounded-full cursor-pointer shadow-inner border-2 border-solid border-gray-50 dark:border-gray-600 dark:text-gray-400 dark:bg-gray-700"
+          className="flex justify-center items-center text-2xl text-gray-500 bg-gray-200 w-8 h-8 rounded-full cursor-pointer shadow-inner border-2 border-solid border-gray-50 dark:border-gray-600 dark:text-gray-400 dark:bg-gray-700"
           onClick={() => setAddMode((prev) => !prev)}
         >
-          {addMode ? <IoRemove /> : <IoAdd />}
+          <IoAdd />
         </div>
       </div>
       {chat.map((item, index) => (

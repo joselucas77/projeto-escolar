@@ -14,7 +14,7 @@ const UserInfo = () => {
           </span>
         </div>
         <h2
-          className={`font-semibold transition-all duration-500 ${
+          className={`font-semibold duration-300 ${
             navbarActive ? "text-lg" : "text-xl"
           }`}
         >

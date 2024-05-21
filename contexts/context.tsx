@@ -56,58 +56,81 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
 
   const handleDelete = () => {
     closeModal();
-    handleShowNotification("Tarefa Deletada!");
+    handleShowNotification("Tarefa Deletada!", "success");
   };
 
   const handleUpdate = () => {
     closeModal();
-    handleShowNotification("Tarefa Alterada!");
+    handleShowNotification("Tarefa Alterada!", "success");
   };
 
   const handleCraete = () => {
     closeModal();
-    handleShowNotification("Tarefa Criada!");
+    handleShowNotification("Tarefa Criada!", "success");
   };
 
   // Toast
-  const [toasts, setToasts] = useState<Toast[]>([]);
+  const [successQueue, setSuccessQueue] = useState<Toast[]>([]);
+  const [alertQueue, setAlertQueue] = useState<Toast[]>([]);
+  const [currentToast, setCurrentToast] = useState<Toast | null>(null);
+  const [toastQueue, setToastQueue] = useState<Toast[]>([]);
+  const [alertToast, setAlertToast] = useState(false);
   const audioEnterNotification = new Audio("/notification-enter.mp3");
 
-  const handleShowNotification = (text: string) => {
-    if (toasts.length < 3) {
-      const newToast: Toast = {
-        id: Date.now(),
-        show: true,
-        removing: false,
-        description: text,
-      };
+  const handleShowNotification = (text: string, type: "success" | "alert") => {
+    const newToast: Toast = {
+      id: Date.now(),
+      show: true,
+      removing: false,
+      description: text,
+      type,
+    };
 
-      setToasts([newToast, ...toasts]); // Adiciona nova notificação no início
-      audioEnterNotification.play();
-
-      // Inicia o temporizador apenas para a nova notificação
-      const timeoutId = setTimeout(() => {
-        handleRemoveToast(newToast.id);
-      }, 5000);
-
-      // Adiciona o timeoutId à notificação para limpeza posterior
-      newToast.timeoutId = timeoutId;
+    if (currentToast && currentToast.type !== type) {
+      handleRemoveToast(currentToast.id, currentToast.type, true);
     }
+
+    if (type === "success") {
+      setSuccessQueue([newToast, ...successQueue]);
+    } else {
+      setAlertQueue([newToast, ...alertQueue]);
+    }
+
+    audioEnterNotification.play();
   };
 
-  const handleRemoveToast = (id: number) => {
-    setToasts((prevToasts) =>
-      prevToasts.map((toast) => {
-        if (toast.id === id) {
-          return { ...toast, removing: true }; // Marca a notificação como removendo
+  const handleRemoveToast = (
+    id: number,
+    type: "success" | "alert",
+    removeAll: boolean = false
+  ) => {
+    if (removeAll) {
+      setCurrentToast((prevToast) =>
+        prevToast ? { ...prevToast, removing: true } : null
+      );
+      setTimeout(() => {
+        setCurrentToast(null);
+        if (type === "success") {
+          setSuccessQueue([]);
+        } else {
+          setAlertQueue([]);
         }
-        return toast;
-      })
-    );
-
-    setTimeout(() => {
-      setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
-    }, 700); // Aguarda o término da animação antes de remover completamente a notificação
+      }, 700);
+    } else if (currentToast?.id === id) {
+      setCurrentToast((prevToast) =>
+        prevToast && prevToast.id === id
+          ? { ...prevToast, removing: true }
+          : prevToast
+      );
+      setTimeout(() => {
+        setCurrentToast(null);
+        if (type === "success") {
+          setSuccessQueue((prevQueue) => prevQueue.slice(1));
+        } else {
+          setAlertQueue((prevQueue) => prevQueue.slice(1));
+        }
+      }, 700);
+    }
   };
 
   // Pagination global states
@@ -129,18 +152,17 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
     chat.name.toLowerCase().includes(searchProfile.toLowerCase())
   );
 
-  const [alertToast, setAlertToast] = useState(false);
+  // const [alertToast, setAlertToast] = useState(false);
 
   const addChat = (index: number) => {
-    console.log(index);
     const chatToAdd = newChat[index];
     if (!ProfileItems.some((item) => item.profile === chatToAdd.profile)) {
       setAlertToast(false);
       ProfileItems.push(chatToAdd);
-      handleShowNotification("Perfil adicionado!");
+      handleShowNotification("Perfil adicionado!", "success");
     } else {
       setAlertToast(true);
-      handleShowNotification("Já foi adicionado!");
+      handleShowNotification("Já foi adicionado!", "alert");
     }
   };
 
@@ -253,17 +275,17 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
 
   // Task completed
   const handleTaskCompleted = () => {
-    handleShowNotification("Tarefa Concluida!");
+    handleShowNotification("Tarefa Concluida!", "success");
   };
 
   // Check your email
   const handleSendEmail = () => {
-    handleShowNotification("Verifique o email!");
+    handleShowNotification("Verifique o email!", "alert");
   };
 
   // Now log in
   const handleRegisterUser = () => {
-    handleShowNotification("Agora faça login!");
+    handleShowNotification("Agora faça login!", "alert");
   };
 
   // Set to date on Card the Task
@@ -321,13 +343,13 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         handleTaskCompleted,
         handleSendEmail,
         handleRegisterUser,
-        toasts,
+        // toasts,
         handleShowNotification,
         handleRemoveToast,
         openFormModal,
         changeMode,
         addClass,
-        setToasts,
+        // setToasts,
         chat,
         newChat,
         open,
@@ -354,8 +376,17 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         searchProfile,
         setSearchProfile,
         addChat,
-        alertToast,
+        alertToast: currentToast?.type === "alert",
         setAlertToast,
+        toastQueue,
+        currentToast,
+        queueLength: toastQueue.length,
+        setCurrentToast,
+        successQueue,
+        setToastQueue,
+        alertQueue,
+        alertQueueLength: alertQueue.length,
+        successQueueLength: successQueue.length,
       }}
     >
       {children}

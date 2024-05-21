@@ -1,13 +1,18 @@
 "use client";
-import { IoAdd } from "react-icons/io5";
+import { IoAdd, IoRemove, IoChatbubbleOutline } from "react-icons/io5";
 import { useAppContext } from "@/contexts/context";
 import AddNewChat from "../add-chat/form";
+import Link from "next/link";
 
 const ChatList = () => {
   const { navbarActive, searchChat, setSearchChat, chat, addMode, setAddMode } =
     useAppContext();
+
+  const oi = () => {
+    console.log("oi");
+  };
   return (
-    <div className="flex flex-col p-1 overflow-scroll shadow-inner">
+    <div className="flex flex-col p-1 shadow-inner rounded-lg">
       <div className="flex flex-row flex-wrap space-y-4 gap-2 sm:space-y-0 items-center justify-between py-4 px-1">
         <div
           className={`transition-all duration-500 ${
@@ -49,25 +54,40 @@ const ChatList = () => {
           className="flex justify-center items-center text-2xl text-gray-500 bg-gray-200 w-8 h-8 rounded-full cursor-pointer shadow-inner border-2 border-solid border-gray-50 dark:border-gray-600 dark:text-gray-400 dark:bg-gray-700"
           onClick={() => setAddMode((prev) => !prev)}
         >
-          <IoAdd />
+          {addMode ? <IoRemove /> : <IoAdd />}
         </div>
       </div>
-      {chat.map((item, index) => (
-        <div
-          key={index}
-          className="flex items-center gap-3 py-5 cursor-pointer border-b border-solid border-gray-300 dark:border-gray-900"
-        >
-          <div className="relative inline-flex items-center justify-center w-12 h-12 ring-2 p-1 ring-gray-200 overflow-hidden bg-gray-300 rounded-full dark:ring-gray-700 dark:bg-gray-900">
-            <span className="font-medium text-gray-600 dark:text-gray-300">
-              {item.profile}
-            </span>
-          </div>
-          <div className="flex flex-col">
-            <span className="font-medium">{item.name}</span>
-            <p className="text-sm font-light">{item.mensage}</p>
-          </div>
-        </div>
-      ))}
+      <div className="flow-root py-1 pr-2 max-h-[30rem] overflow-scroll">
+        <ul role="list" className="">
+          {chat.map((item, index) => (
+            <li
+              key={index}
+              className="py-3 px-2 cursor-pointer rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600"
+              onClick={oi}
+            >
+              <Link href="chat/message/[id]" as={`chat/message/${item.id}`}>
+                <div className="flex items-center">
+                  <div className="flex-shrink-0">
+                    <div className="relative inline-flex items-center justify-center w-12 h-12 overflow-hidden ring-2 p-1 ring-gray-200 bg-gray-300 rounded-full dark:ring-gray-700 dark:bg-gray-900 cursor-default">
+                      <span className="font-medium text-lg text-gray-800 dark:text-gray-300">
+                        {item.profile}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex-1 min-w-0 ms-4">
+                    <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                      {item.name}
+                    </p>
+                  </div>
+                  <div className="inline-flex items-center text-2xl font-semibold text-gray-900 dark:text-white">
+                    <IoChatbubbleOutline />
+                  </div>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
       {addMode && <AddNewChat />}
     </div>
   );

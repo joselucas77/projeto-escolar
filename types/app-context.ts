@@ -6,6 +6,11 @@ import { Chat } from "@/api/datas/chat";
 import { EmojiClickData, Theme } from "emoji-picker-react";
 
 export interface AppContextType {
+  currentToast: Toast | null;
+  setCurrentToast: (toast: Toast | null) => void;
+  setToastQueue: React.Dispatch<React.SetStateAction<Toast[]>>;
+  toastQueue: Toast[];
+  queueLength: number;
   text: string;
   filterOption: string;
   navbarActive: boolean;
@@ -17,6 +22,8 @@ export interface AppContextType {
   addMode: boolean;
   detailsActive: boolean;
   alertToast: boolean;
+  successQueue: Toast[];
+  alertQueue: Toast[];
   currentPageItems: number;
   currentPagePersons: number;
   studentsPerPage: number;
@@ -31,12 +38,12 @@ export interface AppContextType {
   persons: Person[];
   currentItems: Task[];
   currentPersons: Person[];
-  toasts: Toast[];
+  // toasts: Toast[];
   chat: Chat[];
   newChat: Chat[];
   theme: Theme;
   setTheme: React.Dispatch<React.SetStateAction<Theme>>;
-  setToasts: React.Dispatch<React.SetStateAction<Toast[]>>;
+  // setToasts: React.Dispatch<React.SetStateAction<Toast[]>>;
   setSearchStudent: Dispatch<SetStateAction<string>>;
   setSearchTask: Dispatch<SetStateAction<string>>;
   setSearchChat: Dispatch<SetStateAction<string>>;
@@ -73,7 +80,13 @@ export interface AppContextType {
   openForm: () => void;
   toggleChatDetails: () => void;
   addChat: (index: number) => void;
-  handleShowNotification: (text: string) => void;
-  handleRemoveToast: (id: number) => void;
+  handleRemoveToast: (
+    id: number,
+    type: "success" | "alert",
+    removeAll?: boolean
+  ) => void;
+  handleShowNotification: (text: string, type: "success" | "alert") => void;
   formatDate: (date: string) => string;
+  alertQueueLength: number;
+  successQueueLength: number;
 }

@@ -1,8 +1,15 @@
 "use client";
+import ChatContent from "@/components/chat/(id)/chat-content";
+import Detail from "@/components/chat/(id)/detail";
 import List from "@/components/chat/list";
+// import List from "@/components/chat/(id)/list";
 import { useAppContext } from "@/contexts/context";
 
-const Chat = () => {
+interface ChatProps {
+  params: { id: string };
+}
+
+const Message = ({ params }: ChatProps) => {
   const { navbarActive } = useAppContext();
   return (
     <div
@@ -14,9 +21,11 @@ const Chat = () => {
     >
       <div className="bg-white relative flex flex-row gap-1 w-full h-full rounded-lg py-5 text-gray-900 dark:text-white dark:bg-gray-800">
         <List />
+        <Detail />
+        <ChatContent params={params} />
       </div>
     </div>
   );
 };
 
-export default Chat;
+export default Message;

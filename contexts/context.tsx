@@ -21,11 +21,22 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
     setNavbarActive(!navbarActive);
   };
 
+  // CHAT //
   // Details from Chat
   const [detailsActive, setDetailsActive] = useState(false);
   const toggleChatDetails = () => {
     setDetailsActive(!detailsActive);
   };
+
+  // Start Chat
+  const [onChat, setOnChat] = useState(false);
+
+  const StartChat = () => {
+    setOnChat(!onChat);
+  };
+
+  // Chat List
+  const [chatHome, setChatHome] = useState(true);
 
   // Modal
   const [modal, setModal] = useState(false);
@@ -387,6 +398,11 @@ export const AppProvider: React.FunctionComponent<{ children: ReactNode }> = ({
         alertQueue,
         alertQueueLength: alertQueue.length,
         successQueueLength: successQueue.length,
+        onChat,
+        setOnChat,
+        StartChat,
+        chatHome,
+        setChatHome,
       }}
     >
       {children}

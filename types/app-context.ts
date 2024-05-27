@@ -22,6 +22,8 @@ export interface AppContextType {
   addMode: boolean;
   detailsActive: boolean;
   alertToast: boolean;
+  onChat: boolean;
+  chatHome: boolean;
   successQueue: Toast[];
   alertQueue: Toast[];
   currentPageItems: number;
@@ -55,6 +57,8 @@ export interface AppContextType {
   setAddMode: React.Dispatch<React.SetStateAction<boolean>>;
   setDetailsActive: React.Dispatch<React.SetStateAction<boolean>>;
   setAlertToast: React.Dispatch<React.SetStateAction<boolean>>;
+  setOnChat: React.Dispatch<React.SetStateAction<boolean>>;
+  setChatHome: React.Dispatch<React.SetStateAction<boolean>>;
   setText: React.Dispatch<React.SetStateAction<string>>;
   modalContent: React.ReactNode;
   setModalContent: React.Dispatch<React.SetStateAction<React.ReactNode>>;
@@ -79,6 +83,7 @@ export interface AppContextType {
   changeMode: () => void;
   openForm: () => void;
   toggleChatDetails: () => void;
+  StartChat: () => void;
   addChat: (index: number) => void;
   handleRemoveToast: (
     id: number,

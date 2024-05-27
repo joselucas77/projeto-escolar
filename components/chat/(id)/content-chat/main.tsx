@@ -3,7 +3,11 @@ import { MessageItems } from "@/api/datas/message-chat";
 import Image from "next/image";
 import Dropdown from "./dropdown";
 
-export const Main = () => {
+interface MainProps {
+  profile: string;
+}
+
+export const Main = ({ profile }: MainProps) => {
   return (
     <div className="flex flex-col p-5 overflow-scroll gap-5 shadow-inner">
       {MessageItems.map((msg, index) => (
@@ -18,7 +22,7 @@ export const Main = () => {
           {msg.profile && (
             <div className="relative inline-flex items-center justify-center w-8 h-8 ring-2 p-5 ring-gray-200 overflow-hidden bg-gray-300 rounded-full dark:ring-gray-700 dark:bg-gray-900">
               <span className="font-medium text-gray-600 dark:text-gray-300">
-                {msg.profile}
+                {profile}
               </span>
             </div>
           )}

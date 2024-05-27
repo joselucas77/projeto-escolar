@@ -17,11 +17,7 @@ export const metadata: Metadata = {
   description: "Sistema Inovador Escolar",
 };
 
-export default function LoginLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" className={poppins.className}>
       <body className="bg-gray-300 dark:bg-gray-900">

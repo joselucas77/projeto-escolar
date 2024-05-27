@@ -80,3 +80,7 @@ export const ChatItems: Chat[] = [
 ];
 
 export const ProfileItems: Chat[] = [];
+
+export function getChatById(id: number): Chat | undefined {
+  return ChatItems.find((chat) => chat.id === id);
+}
